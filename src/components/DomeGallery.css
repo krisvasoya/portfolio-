@@ -1,0 +1,200 @@
+.sphere-root {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  --radius: 520px;
+  --viewer-pad: 72px;
+  --circ: calc(var(--radius) * 3.14159265);
+  --rot-y: calc((360deg / var(--segments-x)) / 2);
+  --rot-x: calc((360deg / var(--segments-y)) / 2);
+  --item-width: calc(var(--circ) / var(--segments-x));
+  --item-height: calc(var(--circ) / var(--segments-y));
+}
+
+.sphere-root * {
+  box-sizing: border-box;
+}
+
+.sphere,
+.item,
+.item__image {
+  transform-style: preserve-3d;
+}
+
+main.sphere-main,
+.sphere-main {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  background: transparent;
+  width: 100%;
+  height: 100%;
+}
+
+.stage {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  perspective: calc(var(--radius) * 2);
+  perspective-origin: 50% 50%;
+  contain: layout paint size;
+}
+
+.sphere {
+  transform: translateZ(calc(var(--radius) * -1));
+  will-change: transform;
+}
+
+.overlay,
+.overlay--blur {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  z-index: 3;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+}
+
+.overlay {
+  background-image: radial-gradient(rgba(7, 9, 14, 0) 65%, var(--overlay-blur-color, #07090e) 100%);
+}
+
+.overlay--blur {
+  -webkit-mask-image: radial-gradient(rgba(7, 9, 14, 0) 70%, var(--overlay-blur-color, #07090e) 90%);
+  mask-image: radial-gradient(rgba(7, 9, 14, 0) 70%, var(--overlay-blur-color, #07090e) 90%);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.item {
+  width: calc(var(--item-width) * var(--item-size-x));
+  height: calc(var(--item-height) * var(--item-size-y));
+  position: absolute;
+  top: -999px;
+  bottom: -999px;
+  left: -999px;
+  right: -999px;
+  margin: auto;
+  transform-origin: 50% 50%;
+  backface-visibility: hidden;
+  transition: transform 300ms ease;
+  transform: rotateY(calc(var(--rot-y) * (var(--offset-x) + ((var(--item-size-x) - 1) / 2)) + var(--rot-y-delta, 0deg)))
+    rotateX(calc(var(--rot-x) * (var(--offset-y) - ((var(--item-size-y) - 1) / 2)) + var(--rot-x-delta, 0deg)))
+    translateZ(var(--radius));
+}
+
+.item__image {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--tile-radius, 20px);
+  border: 1.5px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  cursor: pointer;
+  filter: var(--image-filter, none);
+  transition: border-color 0.3s, transform 0.3s, filter 0.3s;
+}
+
+.item__image:hover {
+  transform: scale(1.05);
+  border-color: var(--color-accent-1);
+}
+
+.item__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.edge-fade {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 10%;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.edge-fade--top {
+  top: 0;
+  background: linear-gradient(180deg, var(--overlay-blur-color, #07090e) 0%, transparent 100%);
+}
+
+.edge-fade--bottom {
+  top: auto;
+  bottom: 0;
+  background: linear-gradient(360deg, var(--overlay-blur-color, #07090e) 0%, transparent 100%);
+}
+
+.viewer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(7, 9, 14, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  opacity: 0;
+  transition: opacity 300ms ease;
+  pointer-events: none;
+  z-index: 10;
+}
+
+[data-enlarging="true"] .scrim {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.frame {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(100% - var(--viewer-pad) * 2);
+  height: calc(100% - var(--viewer-pad) * 2);
+  max-width: 600px;
+  max-height: 80vh;
+  pointer-events: none;
+  z-index: 11;
+}
+
+.enlarge {
+  position: absolute;
+  z-index: 20;
+  border-radius: var(--enlarge-radius, 20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65);
+  overflow: hidden;
+  pointer-events: auto;
+}
+
+.enlarge img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.enlarge-closing {
+  border-radius: var(--tile-radius, 20px);
+}
+
+/* Scroll Lock Helper */
+body.dg-scroll-lock {
+  overflow: hidden !important;
+  touch-action: none;
+}

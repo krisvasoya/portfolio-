@@ -1,0 +1,68 @@
+.falling-text-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  cursor: pointer;
+  text-align: left;
+}
+
+.falling-text-target {
+  display: block;
+  position: relative;
+  z-index: 2;
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.word {
+  display: inline-block;
+  margin: 0 2px;
+  user-select: none;
+  position: relative;
+  z-index: 2;
+  cursor: grab;
+  transition: color 0.2s ease;
+  color: var(--text-secondary);
+}
+
+.word:active {
+  cursor: grabbing;
+}
+
+.highlighted {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+}
+
+.falling-text-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Hint label shown before trigger */
+.falling-text-hint {
+  position: absolute;
+  bottom: -1.5rem;
+  left: 0;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-family: var(--font-body);
+  pointer-events: none;
+  opacity: 0.7;
+  animation: pulse-hint 2s ease-in-out infinite;
+}
+
+@keyframes pulse-hint {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}

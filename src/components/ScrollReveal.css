@@ -1,0 +1,40 @@
+.scroll-reveal {
+  margin: 0;
+  padding: 0;
+}
+
+.scroll-reveal-text {
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 4vw, 2.8rem);
+  line-height: 1.45;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.scroll-reveal-text .word {
+  display: inline-block;
+  will-change: opacity, filter;
+}
+
+/* About section variant — left-aligned, slightly smaller */
+.about-scroll-reveal .scroll-reveal-text {
+  font-size: clamp(1.3rem, 3vw, 2.1rem);
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: -0.01em;
+  line-height: 1.55;
+}
+
+/* Contact section variant — centered, medium weight */
+.contact-scroll-reveal {
+  text-align: center;
+}
+
+.contact-scroll-reveal .scroll-reveal-text {
+  font-size: clamp(1.4rem, 3.2vw, 2.3rem);
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.015em;
+  line-height: 1.5;
+}
