@@ -77,6 +77,9 @@ function App() {
       {/* Custom trail cursor overlay */}
       <CustomCursor />
 
+      {/* Traveling CRT sweep deflection line */}
+      <div className="crt-sweep-line" />
+
       {/* Global Fixed Background Wave Overlay - Phosphor CRT Colorized Filter */}
       <div 
         style={{

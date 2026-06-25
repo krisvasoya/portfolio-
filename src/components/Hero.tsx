@@ -37,7 +37,7 @@ export const Hero: React.FC = () => {
           inset: '-20px',
           zIndex: 0,
           opacity: 0.12,
-          backgroundImage: 'radial-gradient(rgba(28, 25, 23, 0.08) 1px, transparent 1px)',
+          backgroundImage: 'radial-gradient(rgba(51, 255, 51, 0.08) 1px, transparent 1px)',
           backgroundSize: '24px 24px'
         }}
       />
@@ -76,7 +76,7 @@ export const Hero: React.FC = () => {
                 fontFamily: 'var(--font-heading)',
                 fontSize: '96px',
                 fontWeight: 900,
-                color: '#1c1917',
+                color: '#ffffff',
                 margin: 0,
                 letterSpacing: '-0.02em',
                 textTransform: 'uppercase',
@@ -88,7 +88,7 @@ export const Hero: React.FC = () => {
                 fontFamily: 'var(--font-heading)',
                 fontSize: '42px',
                 fontWeight: 900,
-                color: 'rgba(28, 25, 23, 0.18)',
+                color: 'rgba(51, 255, 51, 0.22)',
                 margin: 0,
                 letterSpacing: '-0.02em',
                 textTransform: 'uppercase',
@@ -134,8 +134,8 @@ export const Hero: React.FC = () => {
                   alignItems: 'center',
                   gap: '0.5rem',
                   padding: '0.75rem 1.5rem',
-                  backgroundColor: 'rgba(28, 25, 23, 0.03)',
-                  border: '1px solid rgba(28, 25, 23, 0.1)',
+                  backgroundColor: 'rgba(51, 255, 51, 0.05)',
+                  border: '1px solid rgba(51, 255, 51, 0.2)',
                   borderRadius: '6px',
                   fontFamily: 'var(--font-body)',
                   fontSize: '0.82rem',
@@ -151,7 +151,7 @@ export const Hero: React.FC = () => {
                   e.currentTarget.style.color = 'var(--bg-dark)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'rgba(28, 25, 23, 0.03)';
+                  e.currentTarget.style.backgroundColor = 'rgba(51, 255, 51, 0.05)';
                   e.currentTarget.style.color = 'var(--text-primary)';
                 }}
               >
@@ -219,7 +219,7 @@ export const Hero: React.FC = () => {
             </div>
 
             {/* Stat: Years */}
-            <div style={{ width: '100%', borderBottom: '1px solid rgba(28, 25, 23, 0.08)', paddingBottom: '0.8rem' }}>
+            <div style={{ width: '100%', borderBottom: '1px solid rgba(51, 255, 51, 0.15)', paddingBottom: '0.8rem' }}>
               <span style={{
                 fontFamily: 'var(--font-heading)',
                 fontSize: '3rem',
@@ -243,7 +243,7 @@ export const Hero: React.FC = () => {
             </div>
 
             {/* Stat: Projects */}
-            <div style={{ width: '100%', borderBottom: '1px solid rgba(28, 25, 23, 0.08)', paddingBottom: '0.8rem' }}>
+            <div style={{ width: '100%', borderBottom: '1px solid rgba(51, 255, 51, 0.15)', paddingBottom: '0.8rem' }}>
               <span style={{
                 fontFamily: 'var(--font-heading)',
                 fontSize: '3rem',
