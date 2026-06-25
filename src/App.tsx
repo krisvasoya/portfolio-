@@ -47,9 +47,9 @@ function App() {
   }, [isLoading]); // re-run after loading so main content elements are observed
 
   const techGalleryImages = [
-    { src: 'https://github-readme-stats.vercel.app/api/top-langs/?username=krisvasoya&layout=compact&hide_border=true&theme=transparent&text_color=BFBFBF&title_color=33FF33', alt: 'GitHub Top Languages Stats' },
-    { src: 'https://github-readme-stats.vercel.app/api?username=krisvasoya&show_icons=true&hide_border=true&theme=transparent&text_color=BFBFBF&title_color=33FF33&icon_color=00AA00', alt: 'GitHub Profile Analytics' },
-    { src: 'https://streak-stats.demolab.com?user=krisvasoya&hide_border=true&theme=transparent&ring=33FF33&fire=00AA00&currStreakLabel=33FF33', alt: 'GitHub Streak Analytics' },
+    { src: 'https://github-readme-stats.vercel.app/api/top-langs/?username=krisvasoya&layout=compact&hide_border=true&theme=transparent&text_color=BFBFBF&title_color=FFFFFF', alt: 'GitHub Top Languages Stats' },
+    { src: 'https://github-readme-stats.vercel.app/api?username=krisvasoya&show_icons=true&hide_border=true&theme=transparent&text_color=BFBFBF&title_color=FFFFFF&icon_color=FFFFFF', alt: 'GitHub Profile Analytics' },
+    { src: 'https://streak-stats.demolab.com?user=krisvasoya&hide_border=true&theme=transparent&ring=FFFFFF&fire=FFFFFF&currStreakLabel=FFFFFF', alt: 'GitHub Streak Analytics' },
     { src: 'https://skillicons.dev/icons?i=react', alt: 'React' },
     { src: 'https://skillicons.dev/icons?i=ts', alt: 'TypeScript' },
     { src: 'https://skillicons.dev/icons?i=js', alt: 'JavaScript' },
@@ -89,7 +89,7 @@ function App() {
             frontImage="/kris_photo.png"
             backImage="/kris_photo.png"
             imageFit="cover"
-            lanyardColor="#33FF33"
+            lanyardColor="#FFFFFF"
             lanyardWidth={1.2}
           />
           <div className="preloader-content">
@@ -115,8 +115,24 @@ function App() {
         </div>
       )}
 
-      {/* Fluid simulation cursor trail — CRT green mode */}
-      <SplashCursor RAINBOW_MODE={false} COLOR="#33FF33" />
+      {/* Fluid simulation cursor trail — Minimalist white mode */}
+      <SplashCursor RAINBOW_MODE={false} COLOR="#FFFFFF" />
+
+      {/* Left Vertical Scrolling Background Text */}
+      <div className="background-scroller vertical-left">
+        <div className="scroll-track">
+          <span>KRIS VASOYA // DEVELOPER PORTFOLIO v2026 // SYSTEM ONLINE // LATENCY: 0.04ms // REGION: GLOBAL // DESIGN & DEVELOPMENT // </span>
+          <span>KRIS VASOYA // DEVELOPER PORTFOLIO v2026 // SYSTEM ONLINE // LATENCY: 0.04ms // REGION: GLOBAL // DESIGN & DEVELOPMENT // </span>
+        </div>
+      </div>
+
+      {/* Right Vertical Scrolling Background Text */}
+      <div className="background-scroller vertical-right">
+        <div className="scroll-track reverse">
+          <span>CREATIVE FULL-STACK DESIGNER // REACT // WEBGL // THREE.JS // FRAMER-MOTION // GSAP // TAILWIND // TYPESCRIPT // NODE.JS // </span>
+          <span>CREATIVE FULL-STACK DESIGNER // REACT // WEBGL // THREE.JS // FRAMER-MOTION // GSAP // TAILWIND // TYPESCRIPT // NODE.JS // </span>
+        </div>
+      </div>
 
       {/* Global Fixed Background Wave Overlay - Phosphor CRT Colorized Filter */}
       <div 
@@ -126,12 +142,12 @@ function App() {
           left: 0,
           width: '100vw',
           height: '100vh',
-          backgroundImage: 'linear-gradient(rgba(51, 255, 51, 0.04) 50%, rgba(0, 0, 0, 0.18) 50%), url(/contact_bg.png)',
+          backgroundImage: 'linear-gradient(rgba(255, 255, 255, 0.04) 50%, rgba(0, 0, 0, 0.18) 50%), url(/contact_bg.png)',
           backgroundSize: '100% 4px, cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
           opacity: 0.08,
-          filter: 'grayscale(100%) contrast(150%) brightness(0.85) sepia(100%) hue-rotate(85deg) saturate(5)',
+          filter: 'grayscale(100%) contrast(150%) brightness(0.85)',
           pointerEvents: 'none',
           zIndex: -1
         }}
@@ -160,7 +176,7 @@ function App() {
         </a>
       </div>
 
-      <ClickSpark sparkColor="#33FF33" sparkSize={8} sparkRadius={12} sparkCount={7} duration={380}>
+      <ClickSpark sparkColor="#FFFFFF" sparkSize={8} sparkRadius={12} sparkCount={7} duration={380}>
         {/* Glassmorphic Navigation Bar */}
         <Navbar />
 

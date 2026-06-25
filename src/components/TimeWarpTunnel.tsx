@@ -33,13 +33,13 @@ export const TimeWarpTunnel: React.FC<TimeWarpTunnelProps> = ({ onComplete, isAc
     const numStars = 220;
     const stars: Array<{ x: number; y: number; z: number; prevZ: number; color: string }> = [];
 
-    // Curated color palette (Greens to CRT yellow-green glow)
-    const greenPalette = [
-      '#33FF33', // Primary green
-      '#88FF88', // Light green
-      '#00AA00', // Burnt green
-      '#007700', // Deep green
-      '#DDFFFF', // Pale green-white
+    // Curated color palette (Silver/White glow)
+    const silverPalette = [
+      '#FFFFFF', // Primary white
+      '#E6E6E6', // Light silver
+      '#888888', // Medium silver
+      '#444444', // Dark grey
+      '#FFFFFF', // White highlight
     ];
 
     for (let i = 0; i < numStars; i++) {
@@ -48,7 +48,7 @@ export const TimeWarpTunnel: React.FC<TimeWarpTunnelProps> = ({ onComplete, isAc
         y: (Math.random() - 0.5) * 1000,
         z: Math.random() * 1000,
         prevZ: 0,
-        color: greenPalette[Math.floor(Math.random() * greenPalette.length)],
+        color: silverPalette[Math.floor(Math.random() * silverPalette.length)],
       });
     }
 
@@ -133,8 +133,8 @@ export const TimeWarpTunnel: React.FC<TimeWarpTunnelProps> = ({ onComplete, isAc
       const portalRadius = Math.pow(elapsed / duration, 3) * Math.max(width, height) * 0.8;
       const portalGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, Math.max(10, portalRadius));
       portalGrad.addColorStop(0, '#FFFFFF');
-      portalGrad.addColorStop(0.2, '#33FF33');
-      portalGrad.addColorStop(0.6, 'rgba(0, 170, 0, 0.15)');
+      portalGrad.addColorStop(0.2, '#FFFFFF');
+      portalGrad.addColorStop(0.6, 'rgba(255, 255, 255, 0.15)');
       portalGrad.addColorStop(1, 'transparent');
 
       ctx.beginPath();
@@ -194,15 +194,15 @@ export const TimeWarpTunnel: React.FC<TimeWarpTunnelProps> = ({ onComplete, isAc
         flexDirection: 'column',
         alignItems: 'center',
         gap: '0.8rem',
-        textShadow: '0 0 10px rgba(51, 255, 51, 0.8), 0 0 20px rgba(51, 255, 51, 0.4)',
+        textShadow: '0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.2)',
       }}>
         <div style={{
           fontSize: '0.75rem',
           letterSpacing: '0.2em',
-          color: '#33FF33',
+          color: '#FFFFFF',
           fontWeight: 600,
-          border: '1px solid rgba(51, 255, 51, 0.4)',
-          background: 'rgba(51, 255, 51, 0.05)',
+          border: '1px solid rgba(255, 255, 255, 0.4)',
+          background: 'rgba(255, 255, 255, 0.05)',
           padding: '0.4rem 1.2rem',
           borderRadius: '4px',
           display: 'inline-block'

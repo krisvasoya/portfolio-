@@ -23,9 +23,9 @@ export const FlowingMenu: React.FC<FlowingMenuProps> = ({
   speed = 15,
   textColor = '#fff',
   bgColor = 'transparent', // Make it transparent to blend with dark page
-  marqueeBgColor = '#33FF33', // Green marquee background
+  marqueeBgColor = '#FFFFFF', // White/silver marquee background
   marqueeTextColor = '#050505', // Dark text inside marquee
-  borderColor = 'rgba(51, 255, 51, 0.05)'
+  borderColor = 'rgba(255, 255, 255, 0.05)'
 }) => {
   return (
     <div className="menu-wrap" style={{ backgroundColor: bgColor }}>

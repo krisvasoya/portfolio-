@@ -1,6 +1,6 @@
 import React from 'react';
 import { BounceCards } from './BounceCards';
-import { Terminal, Coffee, UtensilsCrossed, Puzzle } from 'lucide-react';
+import { Terminal, Coffee, UtensilsCrossed, Puzzle, Crown } from 'lucide-react';
 import ScrollReveal from './ScrollReveal';
 
 interface Project {
@@ -14,6 +14,77 @@ interface Project {
   preview: React.ReactNode;
 }
 
+interface HoverCompareProps {
+  premiumSrc: string;
+  originalPreview: React.ReactNode;
+  altText: string;
+}
+
+const HoverCompare: React.FC<HoverCompareProps> = ({ premiumSrc, originalPreview, altText }) => {
+  const [hovered, setHovered] = React.useState(false);
+  return (
+    <div 
+      style={{
+        position: 'relative',
+        width: '100%',
+        height: '140px',
+        borderRadius: '10px',
+        overflow: 'hidden',
+        border: '1px solid rgba(255, 255, 255, 0.08)'
+      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      {/* Premium Generated Artwork */}
+      <img 
+        src={premiumSrc} 
+        alt={`${altText} Premium Render`} 
+        style={{
+          position: 'absolute',
+          inset: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          transition: 'opacity 0.6s ease',
+          opacity: hovered ? 0 : 1,
+          zIndex: 2
+        }} 
+      />
+      {/* Original Capture / Interactive Mockup */}
+      <div style={{
+        position: 'absolute',
+        inset: 0,
+        width: '100%',
+        height: '100%',
+        transition: 'opacity 0.6s ease',
+        opacity: hovered ? 1 : 0,
+        zIndex: 1
+      }}>
+        {originalPreview}
+      </div>
+      {/* Badge showing comparison instructions */}
+      <div style={{
+        position: 'absolute',
+        bottom: '8px',
+        right: '8px',
+        background: 'rgba(0, 0, 0, 0.65)',
+        backdropFilter: 'blur(4px)',
+        padding: '2px 8px',
+        borderRadius: '4px',
+        fontSize: '9px',
+        color: '#fff',
+        fontFamily: 'var(--font-mono)',
+        border: '1px solid rgba(255, 255, 255, 0.1)',
+        pointerEvents: 'none',
+        transition: 'opacity 0.3s ease',
+        zIndex: 3
+      }}>
+        {hovered ? 'ORIGINAL VIEW' : 'HOVER TO COMPARE'}
+      </div>
+    </div>
+  );
+};
+
 export const Projects: React.FC = () => {
   const projectsList: Project[] = [
     {
@@ -25,16 +96,22 @@ export const Projects: React.FC = () => {
       demo: "https://factoryos-kr.vercel.app/",
       icon: <Terminal size={18} />,
       preview: (
-        <img 
-          src="/projects/factoryos.png" 
-          alt="FactoryOS Systems Dashboard" 
-          style={{
-            width: '100%',
-            height: '140px',
-            objectFit: 'cover',
-            borderRadius: '10px',
-            border: '1px solid rgba(255, 255, 255, 0.08)'
-          }} 
+        <HoverCompare 
+          premiumSrc="/projects/factoryos-premium.png"
+          altText="FactoryOS"
+          originalPreview={
+            <img 
+              src="/projects/factoryos.png" 
+              alt="FactoryOS Systems Dashboard" 
+              style={{
+                width: '100%',
+                height: '140px',
+                objectFit: 'cover',
+                borderRadius: '10px',
+                border: '1px solid rgba(255, 255, 255, 0.08)'
+              }} 
+            />
+          }
         />
       )
     },
@@ -47,16 +124,22 @@ export const Projects: React.FC = () => {
       demo: "https://obsidianbrew.vercel.app/",
       icon: <Coffee size={18} />,
       preview: (
-        <img 
-          src="/projects/obsidianbrew.png" 
-          alt="Obsidian Brew Landing Web App" 
-          style={{
-            width: '100%',
-            height: '140px',
-            objectFit: 'cover',
-            borderRadius: '10px',
-            border: '1px solid rgba(255, 255, 255, 0.08)'
-          }} 
+        <HoverCompare 
+          premiumSrc="/projects/obsidianbrew-premium.png"
+          altText="Obsidian Brew"
+          originalPreview={
+            <img 
+              src="/projects/obsidianbrew.png" 
+              alt="Obsidian Brew Landing Web App" 
+              style={{
+                width: '100%',
+                height: '140px',
+                objectFit: 'cover',
+                borderRadius: '10px',
+                border: '1px solid rgba(255, 255, 255, 0.08)'
+              }} 
+            />
+          }
         />
       )
     },
@@ -69,16 +152,22 @@ export const Projects: React.FC = () => {
       demo: "https://restorant-frontend.vercel.app/",
       icon: <UtensilsCrossed size={18} />,
       preview: (
-        <img 
-          src="/projects/restorant.png" 
-          alt="Restorant Frontend Menu Interface" 
-          style={{
-            width: '100%',
-            height: '140px',
-            objectFit: 'cover',
-            borderRadius: '10px',
-            border: '1px solid rgba(255, 255, 255, 0.08)'
-          }} 
+        <HoverCompare 
+          premiumSrc="/projects/restorant-premium.png"
+          altText="Restorant Frontend"
+          originalPreview={
+            <img 
+              src="/projects/restorant.png" 
+              alt="Restorant Frontend Menu Interface" 
+              style={{
+                width: '100%',
+                height: '140px',
+                objectFit: 'cover',
+                borderRadius: '10px',
+                border: '1px solid rgba(255, 255, 255, 0.08)'
+              }} 
+            />
+          }
         />
       )
     },
@@ -91,37 +180,43 @@ export const Projects: React.FC = () => {
       demo: "https://puzzel-alpha.vercel.app/",
       icon: <Puzzle size={18} />,
       preview: (
-        <div style={{
-          height: '140px',
-          background: '#07090e',
-          borderRadius: '10px',
-          padding: '0.8rem',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid rgba(79, 172, 254, 0.08)'
-        }}>
-          {/* Mini 3x3 slide puzzle layout */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 24px)',
-            gridTemplateRows: 'repeat(3, 24px)',
-            gap: '3px',
-            background: 'rgba(255,255,255,0.02)',
-            padding: '4px',
-            borderRadius: '6px'
-          }}>
-            <div style={{ background: 'var(--gradient-primary)', borderRadius: '3px', fontSize: '0.5rem', fontWeight: 800, color: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>1</div>
-            <div style={{ background: 'var(--gradient-primary)', borderRadius: '3px', fontSize: '0.5rem', fontWeight: 800, color: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>2</div>
-            <div style={{ background: 'var(--gradient-primary)', borderRadius: '3px', fontSize: '0.5rem', fontWeight: 800, color: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>3</div>
-            <div style={{ background: 'var(--gradient-primary)', borderRadius: '3px', fontSize: '0.5rem', fontWeight: 800, color: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>4</div>
-            <div style={{ background: 'var(--gradient-primary)', borderRadius: '3px', fontSize: '0.5rem', fontWeight: 800, color: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>5</div>
-            <div style={{ background: 'rgba(255,255,255,0.05)', borderRadius: '3px', border: '1px dashed rgba(255,255,255,0.1)' }} />
-            <div style={{ background: 'var(--gradient-primary)', borderRadius: '3px', fontSize: '0.5rem', fontWeight: 800, color: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>7</div>
-            <div style={{ background: 'var(--gradient-primary)', borderRadius: '3px', fontSize: '0.5rem', fontWeight: 800, color: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>6</div>
-            <div style={{ background: 'var(--gradient-primary)', borderRadius: '3px', fontSize: '0.5rem', fontWeight: 800, color: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>8</div>
-          </div>
-        </div>
+        <HoverCompare 
+          premiumSrc="/projects/puzzle-premium.png"
+          altText="Puzzel Alpha"
+          originalPreview={
+            <div style={{
+              height: '140px',
+              background: '#07090e',
+              borderRadius: '10px',
+              padding: '0.8rem',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              border: '1px solid rgba(79, 172, 254, 0.08)'
+            }}>
+              {/* Mini 3x3 slide puzzle layout */}
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(3, 24px)',
+                gridTemplateRows: 'repeat(3, 24px)',
+                gap: '3px',
+                background: 'rgba(255,255,255,0.02)',
+                padding: '4px',
+                borderRadius: '6px'
+              }}>
+                <div style={{ background: 'var(--gradient-primary)', borderRadius: '3px', fontSize: '0.5rem', fontWeight: 800, color: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>1</div>
+                <div style={{ background: 'var(--gradient-primary)', borderRadius: '3px', fontSize: '0.5rem', fontWeight: 800, color: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>2</div>
+                <div style={{ background: 'var(--gradient-primary)', borderRadius: '3px', fontSize: '0.5rem', fontWeight: 800, color: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>3</div>
+                <div style={{ background: 'var(--gradient-primary)', borderRadius: '3px', fontSize: '0.5rem', fontWeight: 800, color: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>4</div>
+                <div style={{ background: 'var(--gradient-primary)', borderRadius: '3px', fontSize: '0.5rem', fontWeight: 800, color: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>5</div>
+                <div style={{ background: 'rgba(255,255,255,0.05)', borderRadius: '3px', border: '1px dashed rgba(255,255,255,0.1)' }} />
+                <div style={{ background: 'var(--gradient-primary)', borderRadius: '3px', fontSize: '0.5rem', fontWeight: 800, color: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>7</div>
+                <div style={{ background: 'var(--gradient-primary)', borderRadius: '3px', fontSize: '0.5rem', fontWeight: 800, color: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>6</div>
+                <div style={{ background: 'var(--gradient-primary)', borderRadius: '3px', fontSize: '0.5rem', fontWeight: 800, color: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>8</div>
+              </div>
+            </div>
+          }
+        />
       )
     },
     {
@@ -145,58 +240,65 @@ export const Projects: React.FC = () => {
         </svg>
       ),
       preview: (
-        <div style={{
-          height: '140px',
-          background: '#06090f',
-          borderRadius: '10px',
-          padding: '0.8rem',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between',
-          border: '1px solid rgba(34, 197, 94, 0.08)',
-          overflow: 'hidden',
-          position: 'relative'
-        }}>
-          <style>{`
-            @keyframes pulse-heart {
-              0%, 100% { transform: scale(1); }
-              50% { transform: scale(1.15); }
-            }
-          `}</style>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <span style={{ fontSize: '0.65rem', color: '#22c55e', fontWeight: 600, fontFamily: 'var(--font-mono)' }}>TRACKING ACTIVE</span>
-            <span style={{ width: '6px', height: '6px', backgroundColor: '#22c55e', borderRadius: '50%', boxShadow: '0 0 8px #22c55e', animation: 'pulse-green 1.5s infinite' }} />
-          </div>
-          {/* heart rate & circular progress layout */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', margin: '0.2rem 0' }}>
-            <div style={{ position: 'relative', width: '45px', height: '45px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <svg viewBox="0 0 36 36" style={{ width: '100%', height: '100%', transform: 'rotate(-90deg)' }}>
-                <path
-                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                  fill="none"
-                  stroke="rgba(255, 255, 255, 0.03)"
-                  strokeWidth="3.5"
-                />
-                <path
-                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                  fill="none"
-                  stroke="#22c55e"
-                  strokeWidth="3.5"
-                  strokeDasharray="75, 100"
-                />
-              </svg>
-              <div style={{ position: 'absolute', fontSize: '0.65rem', fontWeight: 700, color: '#fff', animation: 'pulse-heart 1.2s infinite ease-in-out' }}>❤️</div>
+        <HoverCompare 
+          premiumSrc="/projects/zenforce-premium.png"
+          altText="ZenForce"
+          originalPreview={
+            <div style={{
+              height: '140px',
+              background: '#06090f',
+              borderRadius: '10px',
+              padding: '0.8rem',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              border: '1px solid rgba(255, 255, 255, 0.08)',
+              overflow: 'hidden',
+              position: 'relative',
+              width: '100%'
+            }}>
+              <style>{`
+                @keyframes pulse-heart {
+                  0%, 100% { transform: scale(1); }
+                  50% { transform: scale(1.15); }
+                }
+              `}</style>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span style={{ fontSize: '0.65rem', color: '#ffffff', fontWeight: 600, fontFamily: 'var(--font-mono)' }}>TRACKING ACTIVE</span>
+                <span style={{ width: '6px', height: '6px', backgroundColor: '#ffffff', borderRadius: '50%', boxShadow: '0 0 8px #ffffff', animation: 'pulse-green 1.5s infinite' }} />
+              </div>
+              {/* heart rate & circular progress layout */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', margin: '0.2rem 0' }}>
+                <div style={{ position: 'relative', width: '45px', height: '45px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <svg viewBox="0 0 36 36" style={{ width: '100%', height: '100%', transform: 'rotate(-90deg)' }}>
+                    <path
+                      d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                      fill="none"
+                      stroke="rgba(255, 255, 255, 0.03)"
+                      strokeWidth="3.5"
+                    />
+                    <path
+                      d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                      fill="none"
+                      stroke="#ffffff"
+                      strokeWidth="3.5"
+                      strokeDasharray="75, 100"
+                    />
+                  </svg>
+                  <div style={{ position: 'absolute', fontSize: '0.65rem', fontWeight: 700, color: '#fff', animation: 'pulse-heart 1.2s infinite ease-in-out' }}>❤️</div>
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.1rem' }}>
+                  <span style={{ fontSize: '0.8rem', fontWeight: 800, color: '#fff' }}>134 BPM</span>
+                  <span style={{ fontSize: '0.55rem', color: 'var(--text-muted)' }}>Cardio Zone</span>
+                </div>
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem' }}>
+                <div style={{ background: 'rgba(255, 255, 255, 0.05)', padding: '0.2rem 0.4rem', borderRadius: '4px', fontSize: '0.6rem', color: '#ffffff', textAlign: 'center', fontWeight: 600 }}>420 kcal</div>
+                <div style={{ background: 'rgba(255, 255, 255, 0.05)', padding: '0.2rem 0.4rem', borderRadius: '4px', fontSize: '0.6rem', color: '#ffffff', textAlign: 'center', fontWeight: 600 }}>45 mins</div>
+              </div>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.1rem' }}>
-              <span style={{ fontSize: '0.8rem', fontWeight: 800, color: '#fff' }}>134 BPM</span>
-              <span style={{ fontSize: '0.55rem', color: 'var(--text-muted)' }}>Cardio Zone</span>
-            </div>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem' }}>
-            <div style={{ background: 'rgba(34, 197, 94, 0.05)', padding: '0.2rem 0.4rem', borderRadius: '4px', fontSize: '0.6rem', color: '#22c55e', textAlign: 'center', fontWeight: 600 }}>420 kcal</div>
-            <div style={{ background: 'rgba(34, 197, 94, 0.05)', padding: '0.2rem 0.4rem', borderRadius: '4px', fontSize: '0.6rem', color: '#22c55e', textAlign: 'center', fontWeight: 600 }}>45 mins</div>
-          </div>
-        </div>
+          }
+        />
       )
     },
     {
@@ -216,54 +318,89 @@ export const Projects: React.FC = () => {
         </svg>
       ),
       preview: (
-        <div style={{
-          height: '140px',
-          background: 'linear-gradient(135deg, #150a21 0%, #080510 100%)',
-          borderRadius: '10px',
-          padding: '0.8rem',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between',
-          border: '1px solid rgba(236, 72, 153, 0.15)',
-          boxShadow: '0 0 15px rgba(236, 72, 153, 0.05)',
-          overflow: 'hidden',
-          position: 'relative'
-        }}>
-          <style>{`
-            @keyframes candy-fall-1 {
-              0% { transform: translateY(-20px) rotate(0deg); opacity: 0; }
-              10% { opacity: 1; }
-              90% { opacity: 1; }
-              100% { transform: translateY(110px) rotate(360deg); opacity: 0; }
-            }
-          `}</style>
-          {/* Score overlay */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', zIndex: 1 }}>
-            <span style={{ fontSize: '0.65rem', color: '#ec4899', fontWeight: 700, fontFamily: 'var(--font-mono)' }}>SCORE: 9,450</span>
-            <span style={{ fontSize: '0.6rem', color: '#a855f7', fontWeight: 600 }}>LEVEL 4</span>
-          </div>
-
-          {/* Mini Falling Emojis / Candy Items */}
-          <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none' }}>
-            <span style={{ position: 'absolute', left: '15%', fontSize: '1.1rem', animation: 'candy-fall-1 3s infinite linear' }}>🍬</span>
-            <span style={{ position: 'absolute', left: '40%', fontSize: '1.2rem', animation: 'candy-fall-1 2.5s infinite linear', animationDelay: '0.7s' }}>🍭</span>
-            <span style={{ position: 'absolute', left: '65%', fontSize: '1.0rem', animation: 'candy-fall-1 3.5s infinite linear', animationDelay: '1.4s' }}>🍩</span>
-            <span style={{ position: 'absolute', left: '80%', fontSize: '0.9rem', animation: 'candy-fall-1 2.8s infinite linear', animationDelay: '0.3s' }}>🍫</span>
-          </div>
-
-          {/* Catcher Bucket at the bottom */}
-          <div style={{ display: 'flex', justifyContent: 'center', zIndex: 1 }}>
+        <HoverCompare 
+          premiumSrc="/projects/candy-premium.png"
+          altText="Candy Rain Mania"
+          originalPreview={
             <div style={{
-              width: '60px',
-              height: '14px',
-              background: 'linear-gradient(90deg, #ec4899 0%, #8b5cf6 100%)',
-              borderRadius: '0 0 12px 12px',
-              borderTop: '2px solid #fff',
-              boxShadow: '0 0 10px rgba(236, 72, 153, 0.4)',
-              transform: 'translateY(2px)'
-            }} />
-          </div>
-        </div>
+              height: '140px',
+              background: 'linear-gradient(135deg, #150a21 0%, #080510 100%)',
+              borderRadius: '10px',
+              padding: '0.8rem',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              border: '1px solid rgba(236, 72, 153, 0.15)',
+              boxShadow: '0 0 15px rgba(236, 72, 153, 0.05)',
+              overflow: 'hidden',
+              position: 'relative',
+              width: '100%'
+            }}>
+              <style>{`
+                @keyframes candy-fall-1 {
+                  0% { transform: translateY(-20px) rotate(0deg); opacity: 0; }
+                  10% { opacity: 1; }
+                  90% { opacity: 1; }
+                  100% { transform: translateY(110px) rotate(360deg); opacity: 0; }
+                }
+              `}</style>
+              {/* Score overlay */}
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', zIndex: 1 }}>
+                <span style={{ fontSize: '0.65rem', color: '#ec4899', fontWeight: 700, fontFamily: 'var(--font-mono)' }}>SCORE: 9,450</span>
+                <span style={{ fontSize: '0.6rem', color: '#a855f7', fontWeight: 600 }}>LEVEL 4</span>
+              </div>
+
+              {/* Mini Falling Emojis / Candy Items */}
+              <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none' }}>
+                <span style={{ position: 'absolute', left: '15%', fontSize: '1.1rem', animation: 'candy-fall-1 3s infinite linear' }}>🍬</span>
+                <span style={{ position: 'absolute', left: '40%', fontSize: '1.2rem', animation: 'candy-fall-1 2.5s infinite linear', animationDelay: '0.7s' }}>🍭</span>
+                <span style={{ position: 'absolute', left: '65%', fontSize: '1.0rem', animation: 'candy-fall-1 3.5s infinite linear', animationDelay: '1.4s' }}>🍩</span>
+                <span style={{ position: 'absolute', left: '80%', fontSize: '0.9rem', animation: 'candy-fall-1 2.8s infinite linear', animationDelay: '0.3s' }}>🍫</span>
+              </div>
+
+              {/* Catcher Bucket at the bottom */}
+              <div style={{ display: 'flex', justifyContent: 'center', zIndex: 1 }}>
+                <div style={{
+                  width: '60px',
+                  height: '14px',
+                  background: 'linear-gradient(90deg, #ec4899 0%, #8b5cf6 100%)',
+                  borderRadius: '0 0 12px 12px',
+                  borderTop: '2px solid #fff',
+                  boxShadow: '0 0 10px rgba(236, 72, 153, 0.4)',
+                  transform: 'translateY(2px)'
+                }} />
+              </div>
+            </div>
+          }
+        />
+      )
+    },
+    {
+      title: "N-Queens Royal",
+      tag: "3D Algorithmic Game",
+      desc: "An interactive 3D chess visualizer and solver for the N-Queens puzzle. Features realistic materials, tone mapping, custom audio, and achievements.",
+      tech: ["Three.js", "GSAP", "HTML5 Canvas", "Algorithms"],
+      github: "https://github.com/krisvasoya/Nqueen-royal",
+      demo: "https://nqueen-royal.vercel.app/",
+      icon: <Crown size={18} />,
+      preview: (
+        <HoverCompare 
+          premiumSrc="/projects/nqueen-premium.png"
+          altText="N-Queens Royal"
+          originalPreview={
+            <img 
+              src="/projects/nqueen-user.png" 
+              alt="N-Queens Royal Conquest Original Screenshot" 
+              style={{
+                width: '100%',
+                height: '140px',
+                objectFit: 'cover',
+                borderRadius: '10px',
+                border: '1px solid rgba(255, 255, 255, 0.08)'
+              }} 
+            />
+          }
+        />
       )
     }
   ];
@@ -301,14 +438,15 @@ export const Projects: React.FC = () => {
         <div className="reveal delay-100" style={{ display: 'flex', justifyContent: 'center', width: '100%', marginTop: '1rem' }}>
           <BounceCards 
             projects={projectsList} 
-            containerWidth={920}
+            containerWidth={980}
             transformStyles={[
-              'rotate(-12deg) translate(-290px)',
-              'rotate(-7deg) translate(-170px)',
-              'rotate(-2deg) translate(-50px)',
-              'rotate(3deg) translate(60px)',
-              'rotate(8deg) translate(180px)',
-              'rotate(13deg) translate(300px)'
+              'rotate(-14deg) translate(-330px)',
+              'rotate(-9deg) translate(-220px)',
+              'rotate(-4deg) translate(-110px)',
+              'rotate(1deg) translate(0px)',
+              'rotate(6deg) translate(110px)',
+              'rotate(11deg) translate(220px)',
+              'rotate(16deg) translate(330px)'
             ]}
           />
         </div>

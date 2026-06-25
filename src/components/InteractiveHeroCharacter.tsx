@@ -6,7 +6,7 @@ import { motion, useMotionValue, useSpring } from 'framer-motion';
 const soundManager = {
   playClick: () => {
     try {
-      const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
+      const AudioContextClass = window.AudioContext || (window as Window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
       if (!AudioContextClass) return;
       const ctx = new AudioContextClass();
       const osc = ctx.createOscillator();
@@ -26,7 +26,7 @@ const soundManager = {
   },
   playHover: () => {
     try {
-      const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
+      const AudioContextClass = window.AudioContext || (window as Window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
       if (!AudioContextClass) return;
       const ctx = new AudioContextClass();
       const osc = ctx.createOscillator();
@@ -40,7 +40,7 @@ const soundManager = {
       gain.connect(ctx.destination);
       osc.start();
       osc.stop(ctx.currentTime + 0.05);
-    } catch (e) {
+    } catch {
       // quiet fail for hover
     }
   }
@@ -63,7 +63,7 @@ export default function InteractiveHeroCharacter() {
   const mousePos = useRef({ x: 0, y: 0, targetX: 0, targetY: 0 });
   const eyeOffset = useRef({ x: 0, y: 0, targetX: 0, targetY: 0 });
   const floatOffset = useRef(0);
-  const lastBlink = useRef(Date.now());
+  const lastBlink = useRef(0);
   const isBlinking = useRef(false);
   const blinkProgress = useRef(0);
   const bounceY = useRef(0);

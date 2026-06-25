@@ -133,8 +133,8 @@ export const About: React.FC = () => {
                   gap: '2rem',
                   marginTop: '0.5rem',
                   padding: '1.5rem',
-                  background: 'rgba(51, 255, 51, 0.03)',
-                  border: '1px solid rgba(51, 255, 51, 0.08)',
+                  background: 'rgba(255, 255, 255, 0.03)',
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
                   borderRadius: '12px',
                   flexWrap: 'wrap',
                 }}
@@ -189,7 +189,7 @@ export const About: React.FC = () => {
 
               <div
                 style={{
-                  borderLeft: '2px solid rgba(51, 255, 51, 0.12)',
+                  borderLeft: '2px solid rgba(255, 255, 255, 0.12)',
                   paddingLeft: '1.5rem',
                   display: 'flex',
                   flexDirection: 'column',
@@ -208,7 +208,7 @@ export const About: React.FC = () => {
                         height: '10px',
                         borderRadius: '50%',
                         background: 'var(--gradient-primary)',
-                        boxShadow: '0 0 10px rgba(51, 255, 51, 0.5)',
+                        boxShadow: '0 0 10px rgba(255, 255, 255, 0.3)',
                       }}
                     />
                     <span
@@ -324,8 +324,8 @@ export const About: React.FC = () => {
               <div
                 style={{
                   padding: '1.2rem 1.5rem',
-                  background: 'rgba(51, 255, 51, 0.03)',
-                  border: '1px dashed rgba(51, 255, 51, 0.15)',
+                  background: 'rgba(255, 255, 255, 0.03)',
+                  border: '1px dashed rgba(255, 255, 255, 0.15)',
                   borderRadius: '12px',
                 }}
               >
@@ -348,8 +348,8 @@ export const About: React.FC = () => {
                       style={{
                         fontSize: '0.78rem',
                         color: 'var(--color-accent-1)',
-                        background: 'rgba(51, 255, 51, 0.06)',
-                        border: '1px solid rgba(51, 255, 51, 0.12)',
+                        background: 'rgba(255, 255, 255, 0.06)',
+                        border: '1px solid rgba(255, 255, 255, 0.12)',
                         borderRadius: '6px',
                         padding: '0.28rem 0.65rem',
                         fontFamily: 'var(--font-body)',

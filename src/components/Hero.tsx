@@ -81,10 +81,10 @@ export const Hero: React.FC = () => {
           }}>
             {/* Top row label */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-              <span style={{ fontSize: '0.82rem', color: '#33ff33', letterSpacing: '0.15em', fontWeight: 800, fontFamily: 'var(--font-mono)' }}>[01 // PORTFOLIO]</span>
-              <span style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: 'rgba(51, 255, 51, 0.4)' }} />
+              <span style={{ fontSize: '0.82rem', color: '#ffffff', letterSpacing: '0.15em', fontWeight: 800, fontFamily: 'var(--font-mono)' }}>[01 // PORTFOLIO]</span>
+              <span style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: 'rgba(255, 255, 255, 0.4)' }} />
               <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.82rem', color: 'var(--text-secondary)' }}>
-                <MapPin size={13} style={{ color: '#33ff33' }} />
+                <MapPin size={13} style={{ color: '#ffffff' }} />
                 <span>India · Remote</span>
               </div>
             </div>
@@ -100,7 +100,7 @@ export const Hero: React.FC = () => {
                 margin: 0
               }}
             >
-              Building <span style={{ color: '#33ff33' }}>Digital</span>
+              Building <span style={{ color: '#ffffff' }}>Digital</span>
               <br />
               Experiences
               <br />
@@ -112,9 +112,9 @@ export const Hero: React.FC = () => {
               width: '100%',
               maxWidth: '680px',
               background: 'rgba(12, 12, 12, 0.85)',
-              border: '1px solid rgba(51, 255, 51, 0.22)',
+              border: '1px solid rgba(255, 255, 255, 0.22)',
               borderRadius: '12px',
-              boxShadow: '0 20px 45px rgba(51, 255, 51, 0.08)',
+              boxShadow: '0 20px 45px rgba(255, 255, 255, 0.08)',
               overflow: 'hidden',
               display: 'flex',
               flexDirection: 'column'
@@ -123,18 +123,18 @@ export const Hero: React.FC = () => {
               <div style={{
                 background: 'rgba(10, 10, 10, 0.95)',
                 padding: '0.6rem 1rem',
-                borderBottom: '1px solid rgba(51, 255, 51, 0.15)',
+                borderBottom: '1px solid rgba(255, 255, 255, 0.15)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between'
               }}>
                 <div style={{ display: 'flex', gap: '0.4rem' }}>
-                  <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#33ff33', opacity: 0.7 }} />
-                  <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#33ff33', opacity: 0.4 }} />
-                  <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#33ff33', opacity: 0.2 }} />
+                  <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#ffffff', opacity: 0.7 }} />
+                  <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#ffffff', opacity: 0.4 }} />
+                  <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#ffffff', opacity: 0.2 }} />
                 </div>
                 <span style={{ fontSize: '0.68rem', color: '#BFBFBF', fontFamily: 'var(--font-mono)', fontWeight: 600, letterSpacing: '0.05em' }}>kris_bio.sh</span>
-                <span style={{ fontSize: '0.68rem', color: '#33ff33', opacity: 0.5, fontFamily: 'var(--font-mono)' }}>v1.3.0</span>
+                <span style={{ fontSize: '0.68rem', color: '#ffffff', opacity: 0.5, fontFamily: 'var(--font-mono)' }}>v1.3.0</span>
               </div>
               
               {/* Terminal Content */}
@@ -153,7 +153,7 @@ export const Hero: React.FC = () => {
                     gap: '0.3rem',
                   }}
                 >
-                  <span style={{ color: '#33ff33', fontSize: '0.6rem' }}>✦</span>
+                  <span style={{ color: '#ffffff', fontSize: '0.6rem' }}>✦</span>
                   Drag words to test physics
                 </p>
                 <FallingText
@@ -188,9 +188,9 @@ export const Hero: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="secondary-btn interactive"
-                style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', borderColor: 'rgba(51, 255, 51, 0.2)' }}
+                style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', borderColor: 'rgba(255, 255, 255, 0.15)' }}
               >
-                <Download size={15} style={{ color: '#33ff33' }} />
+                <Download size={15} style={{ color: '#ffffff' }} />
                 <span>Download Resume</span>
               </a>
             </div>
@@ -203,7 +203,7 @@ export const Hero: React.FC = () => {
             display: 'flex',
             flexDirection: 'column',
             gap: '2rem',
-            borderLeft: '2px solid rgba(51, 255, 51, 0.15)',
+            borderLeft: '2px solid rgba(255, 255, 255, 0.15)',
             paddingLeft: '2rem',
             alignSelf: 'stretch',
             justifyContent: 'center',
@@ -216,7 +216,7 @@ export const Hero: React.FC = () => {
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', width: '100%' }}>
               <div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: '#33ff33', fontSize: '2.2rem', fontWeight: 800, fontFamily: 'var(--font-heading)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: '#ffffff', fontSize: '2.2rem', fontWeight: 800, fontFamily: 'var(--font-heading)' }}>
                   <span>↑ 10+</span>
                   <span style={{ fontSize: '0.85rem', color: '#BFBFBF', letterSpacing: '0.05em' }}>PROJECTS SHIPPED</span>
                 </div>
@@ -226,7 +226,7 @@ export const Hero: React.FC = () => {
               </div>
 
               <div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: '#33ff33', fontSize: '2.2rem', fontWeight: 800, fontFamily: 'var(--font-heading)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: '#ffffff', fontSize: '2.2rem', fontWeight: 800, fontFamily: 'var(--font-heading)' }}>
                   <span>3+</span>
                   <span style={{ fontSize: '0.85rem', color: '#BFBFBF', letterSpacing: '0.05em' }}>YEARS OF CRAFT</span>
                 </div>
@@ -236,7 +236,7 @@ export const Hero: React.FC = () => {
               </div>
 
               <div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: '#33ff33', fontSize: '2.2rem', fontWeight: 800, fontFamily: 'var(--font-heading)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: '#ffffff', fontSize: '2.2rem', fontWeight: 800, fontFamily: 'var(--font-heading)' }}>
                   <span>100%</span>
                   <span style={{ fontSize: '0.85rem', color: '#BFBFBF', letterSpacing: '0.05em' }}>PIXEL PERFECT</span>
                 </div>
@@ -302,11 +302,11 @@ export const Hero: React.FC = () => {
           {/* Sleek SVG Mouse Outline with Gradient */}
           <svg width="22" height="34" viewBox="0 0 24 36" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ opacity: 0.85 }}>
             <rect x="2" y="2" width="20" height="32" rx="10" stroke="url(#mouseGrad)" strokeWidth="1.8" />
-            <line x1="12" y1="8" x2="12" y2="14" stroke="rgba(51, 255, 51, 0.25)" strokeWidth="1.5" strokeLinecap="round" />
+            <line x1="12" y1="8" x2="12" y2="14" stroke="rgba(255, 255, 255, 0.25)" strokeWidth="1.5" strokeLinecap="round" />
             <defs>
               <linearGradient id="mouseGrad" x1="0" y1="0" x2="0" y2="100%">
-                <stop offset="0%" stopColor="#33FF33" />
-                <stop offset="100%" stopColor="rgba(51, 255, 51, 0.15)" />
+                <stop offset="0%" stopColor="#ffffff" />
+                <stop offset="100%" stopColor="rgba(255, 255, 255, 0.15)" />
               </linearGradient>
             </defs>
           </svg>
@@ -315,7 +315,7 @@ export const Hero: React.FC = () => {
           <div style={{
             width: '1.5px',
             height: '35px',
-            background: 'linear-gradient(to bottom, #33FF33 0%, rgba(51, 255, 51, 0) 100%)',
+            background: 'linear-gradient(to bottom, #ffffff 0%, rgba(255, 255, 255, 0) 100%)',
             opacity: 0.3,
             marginTop: '4px',
             position: 'relative'
@@ -328,8 +328,8 @@ export const Hero: React.FC = () => {
             width: '6px',
             height: '6px',
             borderRadius: '50%',
-            backgroundColor: '#33FF33',
-            boxShadow: '0 0 10px #33FF33, 0 0 4px #33FF33',
+            backgroundColor: '#ffffff',
+            boxShadow: '0 0 10px #ffffff, 0 0 4px #ffffff',
             animation: 'scroll-pulse-travel 2.2s infinite cubic-bezier(0.25, 0.46, 0.45, 0.94)'
           }} />
         </div>

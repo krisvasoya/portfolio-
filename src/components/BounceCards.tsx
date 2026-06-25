@@ -110,7 +110,7 @@ export const BounceCards: React.FC<BounceCardsProps> = ({
           transform: noRotationTransform,
           scale: 1.05,
           zIndex: 10,
-          boxShadow: '0 20px 40px rgba(51, 255, 51, 0.25)',
+          boxShadow: '0 20px 40px rgba(255, 255, 255, 0.25)',
           borderColor: 'var(--color-accent-1)',
           duration: 0.45,
           ease: 'power3.out',
