@@ -6,21 +6,12 @@ import { Projects } from './components/Projects';
 import { Contact } from './components/Contact';
 import { DomeGallery } from './components/DomeGallery';
 import { FlowingMenu } from './components/FlowingMenu';
-import Lanyard from './components/Lanyard';
 import ClickSpark from './components/ClickSpark';
-import SplashCursor from './components/SplashCursor';
-import { TimeWarpTunnel } from './components/TimeWarpTunnel';
+import { Preloader } from './components/Preloader';
+import { CustomCursor } from './components/CustomCursor';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
-  const [isFadingOut, setIsFadingOut] = useState(false);
-  const [isTimeTraveling, setIsTimeTraveling] = useState(false);
-  const [showFlash, setShowFlash] = useState(false);
-
-  const handleEnter = () => {
-    setIsFadingOut(true);
-    setIsTimeTraveling(true);
-  };
 
   useEffect(() => {
     // Global Intersection Observer for viewport scroll-triggered entry animations
@@ -81,42 +72,10 @@ function App() {
 
   return (
     <>
-      {isLoading && (
-        <div className={`preloader-overlay ${isFadingOut ? 'fade-out' : ''} ${isTimeTraveling ? 'warp-active' : ''}`}>
-          <Lanyard
-            position={[0, 0, 20]}
-            gravity={[0, -40, 0]}
-            frontImage="/kris_photo.png"
-            backImage="/kris_photo.png"
-            imageFit="cover"
-            lanyardColor="#33FF33"
-            lanyardWidth={1.2}
-          />
-          <div className="preloader-content">
-            <h1 className="preloader-title">KRIS VASOYA</h1>
-            <p className="preloader-subtitle">Creative Full-Stack Developer</p>
-            <button className="enter-btn" onClick={handleEnter}>
-              Enter Portfolio
-            </button>
-          </div>
-          {isTimeTraveling && (
-            <TimeWarpTunnel
-              isActive={isTimeTraveling}
-              onComplete={() => {
-                setIsLoading(false);
-                setIsTimeTraveling(false);
-                setShowFlash(true);
-                setTimeout(() => {
-                  setShowFlash(false);
-                }, 800);
-              }}
-            />
-          )}
-        </div>
-      )}
+      {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
 
-      {/* Fluid simulation cursor trail — CRT green mode */}
-      <SplashCursor RAINBOW_MODE={false} COLOR="#33FF33" />
+      {/* Custom trail cursor overlay */}
+      <CustomCursor />
 
       {/* Global Fixed Background Wave Overlay - Phosphor CRT Colorized Filter */}
       <div 
@@ -266,18 +225,6 @@ function App() {
           <Contact />
         </main>
       </ClickSpark>
-
-      {/* Portal Time Travel Flash Transition Overlay */}
-      {showFlash && (
-        <div style={{
-          position: 'fixed',
-          inset: 0,
-          background: '#FFFFFF',
-          zIndex: 999999,
-          pointerEvents: 'none',
-          animation: 'flash-fade-out 0.8s ease-out forwards'
-        }} />
-      )}
     </>
   );
 }

@@ -72,7 +72,11 @@ export const CustomCursor: React.FC = () => {
     };
   }, []);
 
-  if (hidden) return null;
+  const [isTouchDevice] = useState(() => 
+    typeof window !== 'undefined' && ('ontouchstart' in window || navigator.maxTouchPoints > 0)
+  );
+
+  if (isTouchDevice || hidden) return null;
 
   return (
     <>

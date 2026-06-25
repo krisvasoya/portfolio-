@@ -1,24 +1,25 @@
 :root {
   /* Colors */
-  --bg-dark: #050505;
-  --bg-card: rgba(12, 12, 12, 0.7);
-  --bg-card-hover: rgba(22, 22, 22, 0.85);
-  --border-color: rgba(51, 255, 51, 0.09);
-  --border-color-hover: rgba(51, 255, 51, 0.35);
+  --bg-dark: #f5f2eb; /* Light warm-gray paper canvas */
+  --bg-card: rgba(255, 255, 255, 0.7);
+  --bg-card-hover: rgba(255, 255, 255, 0.95);
+  --border-color: rgba(28, 25, 23, 0.12);
+  --border-color-hover: rgba(16, 185, 129, 0.45); /* Emerald signal accent */
   
-  --text-primary: #ffffff;
-  --text-secondary: #CCCCCC;
-  --text-muted: #777777;
+  --text-primary: #1c1917; /* Dark stone charcoal text */
+  --text-secondary: #44403c;
+  --text-muted: #8c857b;
   
-  --color-accent-1: #33ff33; /* CRT Phosphorus Green */
-  --color-accent-2: #00aa00; /* Burnt Green */
+  --color-accent-1: #10b981; /* Phosphor Emerald Green */
+  --color-accent-2: #059669; 
   --gradient-primary: linear-gradient(135deg, var(--color-accent-1) 0%, var(--color-accent-2) 100%);
-  --glow-shadow: 0 0 20px rgba(51, 255, 51, 0.25);
+  --glow-shadow: 0 0 20px rgba(16, 185, 129, 0.18);
   
   /* Fonts */
-  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-heading: 'Bebas Neue', 'Arial Black', Impact, sans-serif;
+  --font-name: 'Barlow Condensed', sans-serif;
+  --font-body: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'VT323', monospace;
 }
 
 /* Reset & Base */
@@ -31,22 +32,23 @@
 html {
   scroll-behavior: smooth;
   scrollbar-width: thin;
-  scrollbar-color: rgba(51, 255, 51, 0.22) var(--bg-dark);
+  scrollbar-color: rgba(16, 185, 129, 0.22) var(--bg-dark);
 }
 
-/* Custom Scrollbar */
+/* Custom Scrollbar - Light Paper Theme */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
 ::-webkit-scrollbar-track {
   background: var(--bg-dark);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(51, 255, 51, 0.15);
-  border-radius: 3px;
+  background: rgba(28, 25, 23, 0.12);
+  border-radius: 4px;
+  border: 2px solid var(--bg-dark);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(51, 255, 51, 0.3);
+  background: rgba(16, 185, 129, 0.45);
 }
 
 body {
@@ -58,30 +60,86 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   position: relative;
+  /* Premium SVG Fractal Paper Grain/Noise */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='150' height='150' filter='url(%23n)' opacity='0.038'/%3E%3C/svg%3E");
+  background-repeat: repeat;
   animation: crt-flicker 0.25s infinite;
 }
 
-/* CRT Scanlines Overlay */
+/* Physical CRT TV Screen Bezel Wrapper Overlay */
 body::before {
   content: " ";
   display: block;
   position: fixed;
-  top: 0; left: 0; bottom: 0; right: 0;
-  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.22) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.04), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.04));
-  z-index: 99999;
-  background-size: 100% 3px, 6px 100%;
+  inset: 0;
+  z-index: 9999;
   pointer-events: none;
-  opacity: 0.35;
+  border: 18px solid #141211; /* Outer TV cabinet bezel */
+  box-shadow: 
+    inset 0 0 80px rgba(0, 0, 0, 0.8),
+    0 0 0 2px #262321;
+  border-radius: 36px; /* CRT Screen Curvature masking */
 }
 
-/* CRT Screen Spherical Vignette Corner Shadows */
+/* CRT Volumetric Static Scanlines Overlay - Low Opacity SVG Pattern (Super Smooth Perf) */
 body::after {
   content: '';
   position: fixed;
   inset: 0;
-  background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.45) 100%);
-  z-index: 99998;
+  z-index: 9998;
   pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='2' fill='rgba(0,0,0,0.45)'/%3E%3C/svg%3E");
+  background-size: 100% 4px;
+  opacity: 0.038;
+  mix-blend-mode: overlay;
+}
+
+/* Custom Cursor Dot and Ring Styles */
+.custom-cursor-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-accent-1);
+  border-radius: 50%;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 10000; /* Above physical CRT bezel */
+  transition: width 0.2s, height 0.2s, background-color 0.2s;
+}
+
+.custom-cursor-ring {
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--color-accent-1);
+  border-radius: 50%;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 9999;
+  transition: width 0.3s, height 0.3s, border-color 0.3s, background-color 0.3s;
+}
+
+body.hovering-link .custom-cursor-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-accent-2);
+}
+
+body.hovering-link .custom-cursor-ring {
+  width: 38px;
+  height: 38px;
+  border-color: var(--color-accent-2);
+  background-color: rgba(16, 185, 129, 0.05);
+}
+
+/* Hide default cursor on desktop viewports */
+@media (min-width: 1024px) {
+  body {
+    cursor: none;
+  }
+  a, button, select, input, textarea, .interactive {
+    cursor: none !important;
+  }
 }
 
 /* Layout */
@@ -90,6 +148,7 @@ body::after {
   flex-direction: column;
   min-height: 100vh;
   width: 100%;
+  padding: 18px; /* Safety padding inside physical CRT bezel */
 }
 
 .container {
@@ -104,9 +163,9 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   color: var(--text-primary);
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.01em;
   position: relative;
-  animation: crt-text-glitch 3.5s infinite alternate;
+  animation: crt-text-glitch 4.5s infinite alternate;
 }
 
 p {
@@ -129,7 +188,7 @@ p {
 .glass-card:hover {
   background: var(--bg-card-hover);
   border-color: var(--border-color-hover);
-  box-shadow: 0 12px 40px -12px rgba(51, 255, 51, 0.15);
+  box-shadow: 0 12px 40px -12px rgba(16, 185, 129, 0.12);
 }
 
 /* Gradient Text */
@@ -392,5 +451,45 @@ p {
   96% {
     text-shadow: none;
     transform: skew(0);
+  }
+}
+
+/* Retro Modern Bezel-friendly Sticky Navigation */
+.sticky-navbar {
+  position: sticky;
+  top: 18px;
+  z-index: 1000;
+  background: rgba(245, 242, 235, 0.85); /* Matches our light cream canvas */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(28, 25, 23, 0.08);
+  width: 100%;
+  transition: top 0.3s ease, background 0.3s ease;
+}
+
+/* Mobile Bezel and Padding Collapse */
+@media (max-width: 600px) {
+  body::before {
+    border-width: 6px !important;
+    border-radius: 12px !important;
+  }
+  #root {
+    padding: 6px !important;
+  }
+  .sticky-navbar {
+    top: 6px;
+  }
+}
+
+/* Prefers Reduced Motion Check */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-delay: -1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    background-attachment: initial !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
   }
 }
