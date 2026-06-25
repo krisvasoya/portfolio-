@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowRight, MapPin, Download } from 'lucide-react';
-import FallingText from './FallingText';
+import { ArrowRight } from 'lucide-react';
 
 export const Hero: React.FC = () => {
   const [mouseOffset, setMouseOffset] = useState({ x: 0, y: 0 });
@@ -8,16 +7,10 @@ export const Hero: React.FC = () => {
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const { clientX, clientY } = e;
     const { innerWidth, innerHeight } = window;
-    const x = (clientX / innerWidth - 0.5) * 20;
-    const y = (clientY / innerHeight - 0.5) * 20;
+    const x = (clientX / innerWidth - 0.5) * 15;
+    const y = (clientY / innerHeight - 0.5) * 15;
     setMouseOffset({ x, y });
   };
-
-
-  const bioText =
-    "I'm Kris Vasoya, a Frontend Engineer who crafts highly animated, scalable digital interfaces with a focus on WebGL, React, and creative UI systems. I turn ideas into pixel-perfect, performance-driven products.";
-
-  const highlightWords = ['Kris', 'Vasoya,', 'Frontend', 'Engineer', 'animated,', 'WebGL,', 'React,', 'creative', 'pixel-perfect,', 'performance-driven'];
 
   return (
     <section
@@ -25,11 +18,11 @@ export const Hero: React.FC = () => {
       onMouseMove={handleMouseMove}
       style={{
         position: 'relative',
-        minHeight: '100vh',
+        minHeight: '85vh',
         display: 'flex',
         alignItems: 'center',
         overflow: 'hidden',
-        padding: '7rem 0 5rem',
+        padding: '5rem 0',
         width: '100%',
         backgroundColor: 'transparent'
       }}
@@ -43,21 +36,9 @@ export const Hero: React.FC = () => {
           position: 'absolute',
           inset: '-20px',
           zIndex: 0,
-        }}
-      />
-
-      {/* Radial glow accent */}
-      <div
-        style={{
-          position: 'absolute',
-          top: '20%',
-          left: '-5%',
-          width: '45vw',
-          height: '45vw',
-          background: 'radial-gradient(circle, rgba(51,255,51,0.06) 0%, transparent 70%)',
-          zIndex: 0,
-          pointerEvents: 'none',
-          filter: 'blur(50px)',
+          opacity: 0.12,
+          backgroundImage: 'radial-gradient(rgba(28, 25, 23, 0.08) 1px, transparent 1px)',
+          backgroundSize: '24px 24px'
         }}
       />
 
@@ -68,261 +49,247 @@ export const Hero: React.FC = () => {
           gap: '4rem',
           alignItems: 'center',
           justifyContent: 'space-between',
-          flexWrap: 'wrap-reverse'
+          flexWrap: 'wrap'
         }}>
-          {/* Left Column (Main Info & Interactive Terminal) */}
+          {/* Left Column (Name & Info) */}
           <div style={{
-            flex: '1 1 520px',
+            flex: '1 1 450px',
             display: 'flex',
             flexDirection: 'column',
-            gap: '2rem',
+            gap: '1rem',
             alignItems: 'flex-start',
           }}>
-            {/* Top row label */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-              <span style={{ fontSize: '0.82rem', color: '#33ff33', letterSpacing: '0.15em', fontWeight: 800, fontFamily: 'var(--font-mono)' }}>[01 // PORTFOLIO]</span>
-              <span style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: 'rgba(51, 255, 51, 0.4)' }} />
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.82rem', color: 'var(--text-secondary)' }}>
-                <MapPin size={13} style={{ color: '#33ff33' }} />
-                <span>India · Remote</span>
-              </div>
-            </div>
-
-            {/* Giant Bold Title */}
-            <h1
-              style={{
-                fontSize: 'clamp(2.6rem, 6vw, 4.4rem)',
-                lineHeight: 1.02,
-                fontWeight: 800,
-                letterSpacing: '-0.03em',
-                textTransform: 'uppercase',
-                margin: 0
-              }}
-            >
-              Building <span style={{ color: '#33ff33' }}>Digital</span>
-              <br />
-              Experiences
-              <br />
-              <span className="gradient-text" style={{ fontStyle: 'italic', textTransform: 'lowercase' }}>that stick</span>
-            </h1>
-
-            {/* Retro Terminal carrying physics FallingText */}
-            <div style={{
-              width: '100%',
-              maxWidth: '680px',
-              background: 'rgba(12, 12, 12, 0.85)',
-              border: '1px solid rgba(51, 255, 51, 0.22)',
-              borderRadius: '12px',
-              boxShadow: '0 20px 45px rgba(51, 255, 51, 0.08)',
-              overflow: 'hidden',
-              display: 'flex',
-              flexDirection: 'column'
+            {/* VT323 Eyebrow Tag */}
+            <span style={{
+              fontFamily: 'var(--font-mono)',
+              fontSize: '0.9rem',
+              color: 'var(--color-accent-1)',
+              letterSpacing: '0.08em',
+              fontWeight: 500
             }}>
-              {/* Terminal Title Bar */}
-              <div style={{
-                background: 'rgba(10, 10, 10, 0.95)',
-                padding: '0.6rem 1rem',
-                borderBottom: '1px solid rgba(51, 255, 51, 0.15)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between'
+              // FULL-STACK DEVELOPER & DESIGNER
+            </span>
+
+            {/* Giant Title name split into two weights */}
+            <div style={{ display: 'flex', flexDirection: 'column', lineHeight: '0.9' }}>
+              <h1 style={{
+                fontFamily: 'var(--font-heading)',
+                fontSize: '96px',
+                fontWeight: 900,
+                color: '#1c1917',
+                margin: 0,
+                letterSpacing: '-0.02em',
+                textTransform: 'uppercase',
+                animation: 'none'
               }}>
-                <div style={{ display: 'flex', gap: '0.4rem' }}>
-                  <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#33ff33', opacity: 0.7 }} />
-                  <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#33ff33', opacity: 0.4 }} />
-                  <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#33ff33', opacity: 0.2 }} />
-                </div>
-                <span style={{ fontSize: '0.68rem', color: '#BFBFBF', fontFamily: 'var(--font-mono)', fontWeight: 600, letterSpacing: '0.05em' }}>kris_bio.sh</span>
-                <span style={{ fontSize: '0.68rem', color: '#33ff33', opacity: 0.5, fontFamily: 'var(--font-mono)' }}>v1.3.0</span>
-              </div>
-              
-              {/* Terminal Content */}
-              <div style={{ padding: '1rem', position: 'relative' }}>
-                {/* Hint label */}
-                <p
-                  style={{
-                    fontSize: '0.65rem',
-                    color: 'var(--text-muted)',
-                    letterSpacing: '0.08em',
-                    textTransform: 'uppercase',
-                    marginBottom: '0.5rem',
-                    fontFamily: 'var(--font-mono)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.3rem',
-                  }}
-                >
-                  <span style={{ color: '#33ff33', fontSize: '0.6rem' }}>✦</span>
-                  Drag words to test physics
-                </p>
-                <FallingText
-                  text={bioText}
-                  highlightWords={highlightWords}
-                  highlightClass="highlighted"
-                  trigger="scroll"
-                  backgroundColor="transparent"
-                  wireframes={false}
-                  gravity={0.5}
-                  fontSize="clamp(0.92rem, 1.8vw, 1.02rem)"
-                  mouseConstraintStiffness={0.8}
-                  containerHeight={230}
-                />
-              </div>
+                KRISH
+              </h1>
+              <h1 style={{
+                fontFamily: 'var(--font-heading)',
+                fontSize: '42px',
+                fontWeight: 900,
+                color: 'rgba(28, 25, 23, 0.18)',
+                margin: 0,
+                letterSpacing: '-0.02em',
+                textTransform: 'uppercase',
+                animation: 'none'
+              }}>
+                VASOYA
+              </h1>
             </div>
+
+            {/* Accent divider line */}
+            <div style={{
+              width: '40px',
+              height: '2px',
+              backgroundColor: 'var(--color-accent-1)',
+              margin: '1.2rem 0'
+            }} />
+
+            {/* Hierarchy adjusted Description */}
+            <p style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: '14px',
+              fontWeight: 300,
+              lineHeight: '1.7',
+              color: 'var(--text-secondary)',
+              maxWidth: '420px',
+              margin: '0 0 1.5rem 0'
+            }}>
+              Building high-performance web experiences at the intersection of design and engineering. React, TypeScript, and a strong obsession with craft.
+            </p>
 
             {/* Action Buttons */}
             <div style={{
               display: 'flex',
-              gap: '1rem',
-              marginTop: '0.5rem',
+              gap: '1.5rem',
+              alignItems: 'center',
               flexWrap: 'wrap',
             }}>
-              <a href="#projects" className="glow-btn interactive">
-                <span>Explore Projects</span>
-                <ArrowRight size={16} />
+              <a 
+                href="#projects" 
+                className="interactive" 
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  padding: '0.75rem 1.5rem',
+                  backgroundColor: 'rgba(28, 25, 23, 0.03)',
+                  border: '1px solid rgba(28, 25, 23, 0.1)',
+                  borderRadius: '6px',
+                  fontFamily: 'var(--font-body)',
+                  fontSize: '0.82rem',
+                  fontWeight: 600,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.05em',
+                  color: 'var(--text-primary)',
+                  textDecoration: 'none',
+                  transition: 'all 0.2s'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = 'var(--text-primary)';
+                  e.currentTarget.style.color = 'var(--bg-dark)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'rgba(28, 25, 23, 0.03)';
+                  e.currentTarget.style.color = 'var(--text-primary)';
+                }}
+              >
+                <span>View Selected Work</span>
+                <ArrowRight size={14} />
               </a>
 
               <a
                 href="https://github.com/krisvasoya"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="secondary-btn interactive"
-                style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', borderColor: 'rgba(51, 255, 51, 0.2)' }}
+                className="interactive"
+                style={{
+                  fontFamily: 'var(--font-body)',
+                  fontSize: '0.82rem',
+                  fontWeight: 600,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.05em',
+                  color: 'var(--text-primary)',
+                  textDecoration: 'none',
+                  borderBottom: '1px solid var(--text-primary)',
+                  paddingBottom: '2px',
+                  transition: 'color 0.2s, border-color 0.2s'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = 'var(--color-accent-1)';
+                  e.currentTarget.style.borderColor = 'var(--color-accent-1)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = 'var(--text-primary)';
+                  e.currentTarget.style.borderColor = 'var(--text-primary)';
+                }}
               >
-                <Download size={15} style={{ color: '#33ff33' }} />
-                <span>Download Resume</span>
+                Download CV
               </a>
             </div>
           </div>
 
-          {/* Right Column (Slanted Stats / Metrics Block) */}
-          <div className="reveal delay-300" style={{
+          {/* Right Column (Metrics & Stat Anchor Blocks) */}
+          <div style={{
             flex: '1 1 300px',
-            maxWidth: '380px',
+            maxWidth: '360px',
             display: 'flex',
             flexDirection: 'column',
-            gap: '2.5rem',
-            borderLeft: '2px solid rgba(51, 255, 51, 0.15)',
-            paddingLeft: '2rem',
-            alignSelf: 'stretch',
-            justifyContent: 'center'
+            gap: '1.8rem',
+            alignItems: 'flex-start'
           }}>
-            <div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: '#33ff33', fontSize: '2.2rem', fontWeight: 800, fontFamily: 'var(--font-heading)' }}>
-                <span>↑ 10+</span>
-                <span style={{ fontSize: '0.85rem', color: '#BFBFBF', letterSpacing: '0.05em' }}>PROJECTS SHIPPED</span>
-              </div>
-              <p style={{ fontSize: '0.86rem', color: '#BFBFBF', marginTop: '0.4rem', lineHeight: '1.6' }}>
-                High-performance digital products launched successfully, driving measurable engagement and conversions.
-              </p>
+            {/* Pill badge */}
+            <div style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.4rem',
+              backgroundColor: 'rgba(16, 185, 129, 0.08)',
+              border: '1px solid rgba(16, 185, 129, 0.15)',
+              borderRadius: '6px',
+              padding: '0.4rem 0.8rem',
+              fontFamily: 'var(--font-mono)',
+              fontSize: '0.78rem',
+              color: 'var(--color-accent-1)',
+              letterSpacing: '0.04em',
+              fontWeight: 600
+            }}>
+              <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: 'var(--color-accent-1)' }} />
+              <span>AVAILABLE FOR PROJECTS</span>
             </div>
 
-            <div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: '#33ff33', fontSize: '2.2rem', fontWeight: 800, fontFamily: 'var(--font-heading)' }}>
-                <span>3+</span>
-                <span style={{ fontSize: '0.85rem', color: '#BFBFBF', letterSpacing: '0.05em' }}>YEARS OF CRAFT</span>
-              </div>
-              <p style={{ fontSize: '0.86rem', color: '#BFBFBF', marginTop: '0.4rem', lineHeight: '1.6' }}>
-                Refining modern web interfaces, modular layout systems, and physics-driven interactive canvas components.
-              </p>
+            {/* Stat: Years */}
+            <div style={{ width: '100%', borderBottom: '1px solid rgba(28, 25, 23, 0.08)', paddingBottom: '0.8rem' }}>
+              <span style={{
+                fontFamily: 'var(--font-heading)',
+                fontSize: '3rem',
+                fontWeight: 900,
+                color: 'var(--text-primary)',
+                lineHeight: '1'
+              }}>
+                3+
+              </span>
+              <span style={{
+                display: 'block',
+                fontFamily: 'var(--font-body)',
+                fontSize: '0.75rem',
+                fontWeight: 500,
+                color: 'var(--text-muted)',
+                letterSpacing: '0.06em',
+                marginTop: '0.2rem'
+              }}>
+                YEARS EXPERIENCE
+              </span>
             </div>
 
-            <div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: '#33ff33', fontSize: '2.2rem', fontWeight: 800, fontFamily: 'var(--font-heading)' }}>
-                <span>100%</span>
-                <span style={{ fontSize: '0.85rem', color: '#BFBFBF', letterSpacing: '0.05em' }}>PIXEL PERFECT</span>
-              </div>
-              <p style={{ fontSize: '0.86rem', color: '#BFBFBF', marginTop: '0.4rem', lineHeight: '1.6' }}>
-                Dedicated to responsive layout structure, clean typography hierarchy, and fluid micro-animations.
-              </p>
+            {/* Stat: Projects */}
+            <div style={{ width: '100%', borderBottom: '1px solid rgba(28, 25, 23, 0.08)', paddingBottom: '0.8rem' }}>
+              <span style={{
+                fontFamily: 'var(--font-heading)',
+                fontSize: '3rem',
+                fontWeight: 900,
+                color: 'var(--text-primary)',
+                lineHeight: '1'
+              }}>
+                12
+              </span>
+              <span style={{
+                display: 'block',
+                fontFamily: 'var(--font-body)',
+                fontSize: '0.75rem',
+                fontWeight: 500,
+                color: 'var(--text-muted)',
+                letterSpacing: '0.06em',
+                marginTop: '0.2rem'
+              }}>
+                PROJECTS SHIPPED
+              </span>
+            </div>
+
+            {/* Stat: Clients */}
+            <div style={{ width: '100%', paddingBottom: '0.8rem' }}>
+              <span style={{
+                fontFamily: 'var(--font-heading)',
+                fontSize: '3rem',
+                fontWeight: 900,
+                color: 'var(--text-primary)',
+                lineHeight: '1'
+              }}>
+                6
+              </span>
+              <span style={{
+                display: 'block',
+                fontFamily: 'var(--font-body)',
+                fontSize: '0.75rem',
+                fontWeight: 500,
+                color: 'var(--text-muted)',
+                letterSpacing: '0.06em',
+                marginTop: '0.2rem'
+              }}>
+                HAPPY CLIENTS
+              </span>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* Mouse Scroll Indicator (Bottom Center) */}
-      <div 
-        style={{
-          position: 'absolute',
-          bottom: '1.8rem',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '0.6rem',
-          zIndex: 2,
-          pointerEvents: 'none'
-        }}
-      >
-        <style>{`
-          @keyframes scroll-pulse-travel {
-            0% {
-              transform: translateY(-10px) scale(0.6);
-              opacity: 0;
-            }
-            20% {
-              transform: translateY(0px) scale(1);
-              opacity: 1;
-            }
-            40% {
-              transform: translateY(12px) scale(0.9);
-              opacity: 0.9;
-            }
-            80% {
-              transform: translateY(38px) scale(0.6);
-              opacity: 0.25;
-            }
-            100% {
-              transform: translateY(50px) scale(0.3);
-              opacity: 0;
-            }
-          }
-        `}</style>
-        <span style={{
-          fontSize: '0.65rem',
-          color: '#BFBFBF',
-          letterSpacing: '0.18em',
-          textTransform: 'uppercase',
-          fontFamily: 'var(--font-mono)',
-          opacity: 0.8
-        }}>
-          Scroll to explore
-        </span>
-        <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', height: '80px' }}>
-          {/* Sleek SVG Mouse Outline with Gradient */}
-          <svg width="22" height="34" viewBox="0 0 24 36" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ opacity: 0.85 }}>
-            <rect x="2" y="2" width="20" height="32" rx="10" stroke="url(#mouseGrad)" strokeWidth="1.8" />
-            <line x1="12" y1="8" x2="12" y2="14" stroke="rgba(51, 255, 51, 0.25)" strokeWidth="1.5" strokeLinecap="round" />
-            <defs>
-              <linearGradient id="mouseGrad" x1="0" y1="0" x2="0" y2="100%">
-                <stop offset="0%" stopColor="#33FF33" />
-                <stop offset="100%" stopColor="rgba(51, 255, 51, 0.15)" />
-              </linearGradient>
-            </defs>
-          </svg>
-          
-          {/* Vertical guide wire */}
-          <div style={{
-            width: '1.5px',
-            height: '35px',
-            background: 'linear-gradient(to bottom, #33FF33 0%, rgba(51, 255, 51, 0) 100%)',
-            opacity: 0.3,
-            marginTop: '4px',
-            position: 'relative'
-          }} />
-
-          {/* Traveling light particle */}
-          <div style={{
-            position: 'absolute',
-            top: '12px',
-            width: '6px',
-            height: '6px',
-            borderRadius: '50%',
-            backgroundColor: '#33FF33',
-            boxShadow: '0 0 10px #33FF33, 0 0 4px #33FF33',
-            animation: 'scroll-pulse-travel 2.2s infinite cubic-bezier(0.25, 0.46, 0.45, 0.94)'
-          }} />
         </div>
       </div>
     </section>
