@@ -277,46 +277,57 @@ export const Contact: React.FC = () => {
       />
 
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-        {/* Section Header */}
-        <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
-          <span
-            className="gradient-text"
-            style={{
-              fontSize: '0.85rem',
-              fontWeight: 600,
-              letterSpacing: '0.12em',
-              textTransform: 'uppercase',
-            }}
-          >
-            03. Let's Connect
-          </span>
-        </div>
-
-        <ScrollReveal
-          baseOpacity={0}
-          enableBlur={true}
-          baseRotation={3}
-          blurStrength={8}
-          containerClassName="contact-scroll-reveal"
-          rotationEnd="center center"
-          wordAnimationEnd="center center"
-        >
-          Great work starts with a conversation. Let's build something remarkable together.
-        </ScrollReveal>
-
-        {/* Scroll Revealed Heading */}
-        <div style={{ textAlign: 'center', marginBottom: '1rem', marginTop: '1.5rem' }}>
-          <h2 style={{ fontSize: 'clamp(2rem, 4.5vw, 2.8rem)', margin: 0 }}>
-            <ScrollReveal
-              baseOpacity={0}
-              enableBlur={true}
-              baseRotation={4}
-              blurStrength={6}
-              containerClassName="contact-heading-reveal"
+        {/* Headings and HUD telemetry panel - Fades out dynamically when envelope opens to prevent overlaps and focus user attention */}
+        <div style={{
+          opacity: isOpen ? 0 : 1,
+          visibility: isOpen ? 'hidden' : 'visible',
+          transform: isOpen ? 'translateY(-20px) scale(0.96)' : 'translateY(0) scale(1)',
+          transition: 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
+          pointerEvents: isOpen ? 'none' : 'auto',
+          position: 'relative',
+          zIndex: 4
+        }}>
+          {/* Section Header */}
+          <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
+            <span
+              className="gradient-text"
+              style={{
+                fontSize: '0.85rem',
+                fontWeight: 600,
+                letterSpacing: '0.12em',
+                textTransform: 'uppercase',
+              }}
             >
-              Get In Touch
-            </ScrollReveal>
-          </h2>
+              03. Let's Connect
+            </span>
+          </div>
+
+          <ScrollReveal
+            baseOpacity={0}
+            enableBlur={true}
+            baseRotation={3}
+            blurStrength={8}
+            containerClassName="contact-scroll-reveal"
+            rotationEnd="center center"
+            wordAnimationEnd="center center"
+          >
+            Great work starts with a conversation. Let's build something remarkable together.
+          </ScrollReveal>
+
+          {/* Scroll Revealed Heading */}
+          <div style={{ textAlign: 'center', marginBottom: '1rem', marginTop: '1.5rem' }}>
+            <h2 style={{ fontSize: 'clamp(2rem, 4.5vw, 2.8rem)', margin: 0 }}>
+              <ScrollReveal
+                baseOpacity={0}
+                enableBlur={true}
+                baseRotation={4}
+                blurStrength={6}
+                containerClassName="contact-heading-reveal"
+              >
+                Get In Touch
+              </ScrollReveal>
+            </h2>
+          </div>
         </div>
 
         {/* 3D Envelope Mailbox Container */}
@@ -335,7 +346,7 @@ export const Contact: React.FC = () => {
               max-width: 560px;
               height: 360px;
               perspective: 1000px;
-              margin: 180px auto 80px;
+              margin: 110px auto 80px;
               cursor: pointer;
             }
 
@@ -358,7 +369,7 @@ export const Contact: React.FC = () => {
             /* Tooltip hinting click */
             .envelope-hint {
               position: absolute;
-              top: -65px;
+              top: -55px;
               left: 50%;
               transform: translateX(-50%);
               background: rgba(11, 5, 1, 0.7);
@@ -392,38 +403,45 @@ export const Contact: React.FC = () => {
 
             @keyframes pulse-seal {
               0%, 100% {
-                box-shadow: 0 0 15px rgba(51, 255, 51, 0.6), inset 0 2px 4px rgba(255, 255, 255, 0.4);
-                transform: translate(-50%, -50%) scale(1);
+                box-shadow: 0 0 12px rgba(51, 255, 51, 0.5), inset 0 1px 3px rgba(255, 255, 255, 0.3);
+                filter: drop-shadow(0 0 2px rgba(51, 255, 51, 0.2));
               }
               50% {
-                box-shadow: 0 0 25px rgba(51, 255, 51, 0.85), inset 0 2px 4px rgba(255, 255, 255, 0.5);
-                transform: translate(-50%, -50%) scale(1.08);
+                box-shadow: 0 0 24px rgba(51, 255, 51, 0.85), inset 0 1px 3px rgba(255, 255, 255, 0.4);
+                filter: drop-shadow(0 0 6px rgba(51, 255, 51, 0.5));
               }
+            }
+
+            /* Pulse seal hover effect via parent hover */
+            .envelope-container:hover .pulse-seal {
+              transform: translate(-50%, -50%) rotate(45deg) scale(1.15) !important;
+              background: radial-gradient(circle, #52ff52 0%, #00b300 100%) !important;
+              box-shadow: 0 0 25px rgba(51, 255, 51, 0.8), inset 0 2px 4px rgba(255, 255, 255, 0.5) !important;
             }
 
             /* Stylings for form fields inside the letter */
             .letter-input, .letter-textarea {
-              background: rgba(51, 255, 51, 0.02);
-              border: 1px solid rgba(51, 255, 51, 0.12);
-              border-radius: 8px;
+              background: rgba(10, 10, 10, 0.6);
+              border: 1px solid rgba(51, 255, 51, 0.18);
+              border-radius: 6px;
               color: #FFFFFF;
-              font-family: "Plus Jakarta Sans", var(--font-body), sans-serif;
+              font-family: var(--font-body), sans-serif;
               font-size: 0.85rem;
-              padding: 0.6rem 0.8rem;
+              padding: 0.7rem 0.9rem;
               outline: none;
               transition: all 0.25s ease;
               width: 100%;
             }
             .letter-input:focus, .letter-textarea:focus {
               border-color: #33ff33;
-              background: rgba(51, 255, 51, 0.05);
-              box-shadow: 0 0 12px rgba(51, 255, 51, 0.15);
+              background: rgba(10, 10, 10, 0.95);
+              box-shadow: 0 0 12px rgba(51, 255, 51, 0.25);
             }
             .letter-label {
               color: #BFBFBF;
-              font-family: "Plus Jakarta Sans", var(--font-body), sans-serif;
+              font-family: var(--font-body), sans-serif;
               font-size: 0.75rem;
-              font-weight: 600;
+              font-weight: 500;
               letter-spacing: 0.03em;
               text-transform: uppercase;
               opacity: 0.8;
@@ -460,8 +478,8 @@ export const Contact: React.FC = () => {
 
             /* Post stamp styling on letter */
             .letter-stamp {
-              width: 44px;
-              height: 54px;
+              width: 48px;
+              height: 58px;
               border: 1px dashed rgba(51, 255, 51, 0.45);
               border-radius: 4px;
               display: flex;
@@ -473,6 +491,18 @@ export const Contact: React.FC = () => {
               top: 1.4rem;
               right: 1.4rem;
               background: rgba(51, 255, 51, 0.04);
+              overflow: hidden;
+            }
+            .letter-stamp::after {
+              content: '';
+              position: absolute;
+              top: 0; left: 0; width: 100%; height: 100%;
+              background: linear-gradient(to bottom, transparent 0%, rgba(51, 255, 51, 0.1) 50%, transparent 100%);
+              animation: stamp-scan 2.5s linear infinite;
+            }
+            @keyframes stamp-scan {
+              0% { transform: translateY(-100%); }
+              100% { transform: translateY(100%); }
             }
             .stamp-text {
               font-family: var(--font-mono);
@@ -486,7 +516,7 @@ export const Contact: React.FC = () => {
             @media (max-width: 580px) {
               .envelope-container {
                 height: 320px;
-                margin-top: 130px;
+                margin-top: 90px;
                 margin-bottom: 40px;
               }
               .envelope-hint {
@@ -604,13 +634,13 @@ export const Contact: React.FC = () => {
               style={{
                 position: 'absolute',
                 width: '92%',
-                height: '340px',
+                height: '345px',
                 left: '4%',
                 bottom: '4%',
-                background: 'rgba(11, 5, 1, 0.88)',
-                border: '1px solid rgba(51, 255, 51, 0.28)',
-                backdropFilter: 'blur(16px)',
-                borderRadius: '10px',
+                background: 'rgba(12, 11, 10, 0.94)',
+                border: '1px solid rgba(51, 255, 51, 0.22)',
+                backdropFilter: 'blur(20px)',
+                borderRadius: '12px',
                 padding: '1.4rem',
                 zIndex: 2,
                 boxShadow: '0 8px 30px rgba(0, 0, 0, 0.6)',
@@ -801,30 +831,35 @@ export const Contact: React.FC = () => {
               </svg>
             </div>
 
-            {/* 5. Glowing Wax Seal Badge (Fades & scales down when open) */}
+            {/* 5. Glowing Wax Seal Badge - Soft Rounded Diamond Shape (Fades & scales down when open) */}
             <div 
+              className="pulse-seal"
               style={{
                 position: 'absolute',
                 left: '50%',
                 top: '150px',
                 width: '46px',
                 height: '46px',
-                borderRadius: '50%',
+                borderRadius: '12px', /* Soft round corners */
                 background: 'radial-gradient(circle, #33FF33 0%, #00AA00 100%)',
-                border: '2px solid rgba(255, 255, 255, 0.25)',
+                border: '2px solid rgba(255, 255, 255, 0.3)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 color: '#FFFFFF',
                 zIndex: 5,
-                transition: 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease',
-                transform: isOpen ? 'translate(-50%, calc(-50% + 120px)) scale(0)' : 'translate(-50%, -50%) scale(1)',
+                transition: 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, background 0.3s',
+                transform: isOpen 
+                  ? 'translate(-50%, calc(-50% + 120px)) rotate(225deg) scale(0)' 
+                  : 'translate(-50%, -50%) rotate(45deg) scale(1)',
                 opacity: isOpen ? 0 : 1,
                 animation: isOpen ? 'none' : 'pulse-seal 2.2s infinite ease-in-out',
                 pointerEvents: 'none'
               }}
             >
-              <Heart size={16} fill="rgba(255, 255, 255, 0.25)" stroke="#FFFFFF" strokeWidth={2.5} />
+              <div style={{ transform: 'rotate(-45deg)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <Heart size={16} fill="rgba(255, 255, 255, 0.3)" stroke="#FFFFFF" strokeWidth={2.5} />
+              </div>
             </div>
           </div>
         </div>

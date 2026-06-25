@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowRight, MapPin, Download } from 'lucide-react';
 import FallingText from './FallingText';
+import InteractiveHeroCharacter from './InteractiveHeroCharacter';
 
 export const Hero: React.FC = () => {
   const [mouseOffset, setMouseOffset] = useState({ x: 0, y: 0 });
@@ -195,46 +196,54 @@ export const Hero: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column (Slanted Stats / Metrics Block) */}
+          {/* Right Column (Slanted Stats / Metrics Block + Spiderman Toy) */}
           <div className="reveal delay-300" style={{
             flex: '1 1 300px',
             maxWidth: '380px',
             display: 'flex',
             flexDirection: 'column',
-            gap: '2.5rem',
+            gap: '2rem',
             borderLeft: '2px solid rgba(51, 255, 51, 0.15)',
             paddingLeft: '2rem',
             alignSelf: 'stretch',
-            justifyContent: 'center'
+            justifyContent: 'center',
+            alignItems: 'center'
           }}>
-            <div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: '#33ff33', fontSize: '2.2rem', fontWeight: 800, fontFamily: 'var(--font-heading)' }}>
-                <span>↑ 10+</span>
-                <span style={{ fontSize: '0.85rem', color: '#BFBFBF', letterSpacing: '0.05em' }}>PROJECTS SHIPPED</span>
-              </div>
-              <p style={{ fontSize: '0.86rem', color: '#BFBFBF', marginTop: '0.4rem', lineHeight: '1.6' }}>
-                High-performance digital products launched successfully, driving measurable engagement and conversions.
-              </p>
+            {/* Interactive Spiderman Toy */}
+            <div style={{ width: '100%', display: 'flex', justifyContent: 'center', marginBottom: '0.5rem' }}>
+              <InteractiveHeroCharacter />
             </div>
 
-            <div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: '#33ff33', fontSize: '2.2rem', fontWeight: 800, fontFamily: 'var(--font-heading)' }}>
-                <span>3+</span>
-                <span style={{ fontSize: '0.85rem', color: '#BFBFBF', letterSpacing: '0.05em' }}>YEARS OF CRAFT</span>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', width: '100%' }}>
+              <div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: '#33ff33', fontSize: '2.2rem', fontWeight: 800, fontFamily: 'var(--font-heading)' }}>
+                  <span>↑ 10+</span>
+                  <span style={{ fontSize: '0.85rem', color: '#BFBFBF', letterSpacing: '0.05em' }}>PROJECTS SHIPPED</span>
+                </div>
+                <p style={{ fontSize: '0.86rem', color: '#BFBFBF', marginTop: '0.4rem', lineHeight: '1.6' }}>
+                  High-performance digital products launched successfully, driving measurable engagement and conversions.
+                </p>
               </div>
-              <p style={{ fontSize: '0.86rem', color: '#BFBFBF', marginTop: '0.4rem', lineHeight: '1.6' }}>
-                Refining modern web interfaces, modular layout systems, and physics-driven interactive canvas components.
-              </p>
-            </div>
 
-            <div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: '#33ff33', fontSize: '2.2rem', fontWeight: 800, fontFamily: 'var(--font-heading)' }}>
-                <span>100%</span>
-                <span style={{ fontSize: '0.85rem', color: '#BFBFBF', letterSpacing: '0.05em' }}>PIXEL PERFECT</span>
+              <div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: '#33ff33', fontSize: '2.2rem', fontWeight: 800, fontFamily: 'var(--font-heading)' }}>
+                  <span>3+</span>
+                  <span style={{ fontSize: '0.85rem', color: '#BFBFBF', letterSpacing: '0.05em' }}>YEARS OF CRAFT</span>
+                </div>
+                <p style={{ fontSize: '0.86rem', color: '#BFBFBF', marginTop: '0.4rem', lineHeight: '1.6' }}>
+                  Refining modern web interfaces, modular layout systems, and physics-driven interactive canvas components.
+                </p>
               </div>
-              <p style={{ fontSize: '0.86rem', color: '#BFBFBF', marginTop: '0.4rem', lineHeight: '1.6' }}>
-                Dedicated to responsive layout structure, clean typography hierarchy, and fluid micro-animations.
-              </p>
+
+              <div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: '#33ff33', fontSize: '2.2rem', fontWeight: 800, fontFamily: 'var(--font-heading)' }}>
+                  <span>100%</span>
+                  <span style={{ fontSize: '0.85rem', color: '#BFBFBF', letterSpacing: '0.05em' }}>PIXEL PERFECT</span>
+                </div>
+                <p style={{ fontSize: '0.86rem', color: '#BFBFBF', marginTop: '0.4rem', lineHeight: '1.6' }}>
+                  Dedicated to responsive layout structure, clean typography hierarchy, and fluid micro-animations.
+                </p>
+              </div>
             </div>
           </div>
         </div>
