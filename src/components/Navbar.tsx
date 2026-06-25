@@ -118,7 +118,7 @@ export const Navbar: React.FC = () => {
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.color = 'var(--color-accent-1)';
-              e.currentTarget.style.background = 'rgba(51, 255, 51, 0.06)';
+              e.currentTarget.style.background = 'rgba(28, 25, 23, 0.04)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.color = 'var(--text-secondary)';
@@ -138,8 +138,8 @@ export const Navbar: React.FC = () => {
             alignItems: 'center', 
             gap: '0.2rem',
             padding: '0 0.2rem',
-            borderLeft: '1px solid rgba(51, 255, 51, 0.15)',
-            borderRight: '1px solid rgba(51, 255, 51, 0.15)'
+            borderLeft: '1px solid rgba(28, 25, 23, 0.1)',
+            borderRight: '1px solid rgba(28, 25, 23, 0.1)'
           }}>
             <span style={{ color: 'var(--color-accent-1)', fontWeight: 'bold' }}>{currentSection.num}</span>
             <span>/</span>
@@ -165,7 +165,7 @@ export const Navbar: React.FC = () => {
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.color = 'var(--color-accent-1)';
-              e.currentTarget.style.background = 'rgba(51, 255, 51, 0.06)';
+              e.currentTarget.style.background = 'rgba(28, 25, 23, 0.04)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.color = 'var(--text-secondary)';
