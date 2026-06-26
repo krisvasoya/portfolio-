@@ -237,12 +237,8 @@ export function MusicPlayer() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(30); // 0 to 100
   const [isMuted, setIsMuted] = useState(false);
-  const [hasCustomMp3, setHasCustomMp3] = useState(false);
-  const [audioMode, setAudioMode] = useState<'synth' | 'mp3'>('synth');
 
   const engineRef = useRef<AmbientSynthEngine | null>(null);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-  const mediaSourceRef = useRef<MediaElementAudioSourceNode | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   // Initialize synth engine
@@ -250,47 +246,24 @@ export function MusicPlayer() {
     engineRef.current = new AmbientSynthEngine();
   }
 
-  // Check if custom soundtrack exists in public/ folder
-  useEffect(() => {
-    fetch('/journey.mp3', { method: 'HEAD' })
-      .then(res => {
-        if (res.ok) {
-          setHasCustomMp3(true);
-          setAudioMode('mp3'); // default to custom MP3 if it's there
-        }
-      })
-      .catch(() => {});
-  }, []);
-
   // Listen to global portfolio entry event to trigger auto-play
   useEffect(() => {
     const handlePortfolioEnter = () => {
       setIsPlaying(true);
-      if (audioMode === 'synth') {
-        engineRef.current?.start();
-      } else {
-        playMp3();
-      }
+      engineRef.current?.start();
     };
 
     window.addEventListener('portfolio-enter', handlePortfolioEnter);
     return () => {
       window.removeEventListener('portfolio-enter', handlePortfolioEnter);
     };
-  }, [audioMode]);
+  }, []);
 
-  // Update volume in engine and audio tag
+  // Update volume in engine
   useEffect(() => {
     const targetVolume = isMuted ? 0 : volume / 100;
-    
-    // Update synth
     if (engineRef.current) {
       engineRef.current.setVolume(targetVolume);
-    }
-    
-    // Update MP3 audio tag
-    if (audioRef.current) {
-      audioRef.current.volume = targetVolume;
     }
   }, [volume, isMuted]);
 
@@ -298,78 +271,10 @@ export function MusicPlayer() {
   const togglePlay = () => {
     if (!isPlaying) {
       setIsPlaying(true);
-      if (audioMode === 'synth') {
-        engineRef.current?.start();
-      } else {
-        playMp3();
-      }
+      engineRef.current?.start();
     } else {
       setIsPlaying(false);
-      if (audioMode === 'synth') {
-        engineRef.current?.stop();
-      } else {
-        pauseMp3();
-      }
-    }
-  };
-
-  function playMp3() {
-    if (!audioRef.current || !engineRef.current) return;
-    
-    engineRef.current.init();
-    const ctx = engineRef.current.getAudioContext();
-    const analyser = engineRef.current.getAnalyser();
-
-    if (ctx) {
-      if (ctx.state === 'suspended') {
-        ctx.resume();
-      }
-
-      // Connect media element if not already connected
-      if (!mediaSourceRef.current && analyser) {
-        try {
-          mediaSourceRef.current = ctx.createMediaElementSource(audioRef.current);
-          mediaSourceRef.current.connect(analyser);
-        } catch (e) {
-          console.error("Failed to connect audio visualizer source node", e);
-        }
-      }
-    }
-
-    audioRef.current.play().catch(e => {
-      console.log("Audio play deferred / blocked by browser autoplay policy:", e);
-      setIsPlaying(false);
-    });
-  }
-
-  function pauseMp3() {
-    if (audioRef.current) {
-      audioRef.current.pause();
-    }
-  }
-
-  // Switch between synth mode and mp3 mode
-  const handleModeChange = (mode: 'synth' | 'mp3') => {
-    if (mode === audioMode) return;
-    
-    // Stop current source
-    if (isPlaying) {
-      if (audioMode === 'synth') {
-        engineRef.current?.stop();
-      } else {
-        pauseMp3();
-      }
-    }
-
-    setAudioMode(mode);
-
-    // If already playing, immediately start the new mode
-    if (isPlaying) {
-      if (mode === 'synth') {
-        setTimeout(() => engineRef.current?.start(), 100);
-      } else {
-        setTimeout(() => playMp3(), 100);
-      }
+      engineRef.current?.stop();
     }
   };
 
@@ -437,32 +342,20 @@ export function MusicPlayer() {
 
   // Clean up on component unmount
   useEffect(() => {
-    const currentAudio = audioRef.current;
     return () => {
       engineRef.current?.stop();
-      if (currentAudio) {
-        currentAudio.pause();
-      }
     };
   }, []);
 
   return (
     <div className="music-player-container">
-      {/* HTML5 Audio Node for custom MP3s */}
-      <audio 
-        ref={audioRef} 
-        src="/journey.mp3" 
-        loop 
-        crossOrigin="anonymous" 
-      />
-
       {isOpen && (
         <div className="music-player-card">
           <div className="music-player-header">
             <div>
               <div className="music-player-title">Journey Soundtrack</div>
               <div className="music-player-subtitle">
-                {audioMode === 'synth' ? 'Generative Ambient Synthesis' : 'Custom Sound (journey.mp3)'}
+                Generative Ambient Synthesis
               </div>
             </div>
             <button 
@@ -476,24 +369,6 @@ export function MusicPlayer() {
           <div className="music-player-visualizer">
             <canvas ref={canvasRef} style={{ width: '100%', height: '100%', display: 'block' }} />
           </div>
-
-          {/* Toggle between Procedural Synth and custom MP3 if custom MP3 exists */}
-          {hasCustomMp3 && (
-            <div className="music-mode-toggle">
-              <button 
-                className={`music-mode-btn ${audioMode === 'synth' ? 'active' : ''}`}
-                onClick={() => handleModeChange('synth')}
-              >
-                Ambient Synth
-              </button>
-              <button 
-                className={`music-mode-btn ${audioMode === 'mp3' ? 'active' : ''}`}
-                onClick={() => handleModeChange('mp3')}
-              >
-                journey.mp3
-              </button>
-            </div>
-          )}
 
           <div className="music-player-controls">
             <button className="music-btn-play" onClick={togglePlay} aria-label={isPlaying ? 'Pause' : 'Play'}>
