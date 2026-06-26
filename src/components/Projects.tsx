@@ -1,6 +1,6 @@
 import React from 'react';
 import { BounceCards } from './BounceCards';
-import { Terminal, Coffee, UtensilsCrossed, Puzzle, Crown } from 'lucide-react';
+import { Terminal, Coffee, UtensilsCrossed, Puzzle, Crown, Globe } from 'lucide-react';
 import ScrollReveal from './ScrollReveal';
 
 interface Project {
@@ -402,6 +402,141 @@ export const Projects: React.FC = () => {
           }
         />
       )
+    },
+    {
+      title: "Digital Friction Analyzer",
+      tag: "Behavioral Analytics Platform",
+      desc: "Identifies user frustration patterns through click tracking and navigation flow analysis. Features real-time dashboards with live session insights to improve UX and engagement.",
+      tech: ["React.js", "Node.js", "MongoDB", "Real-time Analytics"],
+      github: "https://github.com/krisvasoya",
+      demo: "https://friction-analyzer.onrender.com/",
+      icon: (
+        <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="18" width="18" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+        </svg>
+      ),
+      preview: (
+        <HoverCompare
+          premiumSrc="/projects/friction-premium.png"
+          altText="Digital Friction Analyzer"
+          originalPreview={
+            <div style={{
+              height: '140px',
+              background: 'linear-gradient(135deg, #080c14 0%, #0a0f1e 100%)',
+              borderRadius: '10px',
+              padding: '0.75rem',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              border: '1px solid rgba(0, 255, 200, 0.12)',
+              overflow: 'hidden',
+              position: 'relative',
+              width: '100%'
+            }}>
+              <style>{`
+                @keyframes bar-grow { from { width: 0; } to { width: 100%; } }
+                @keyframes pulse-dot { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+              `}</style>
+              {/* Header */}
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span style={{ fontSize: '0.6rem', color: '#00ffc8', fontWeight: 700, fontFamily: 'var(--font-mono)', letterSpacing: '0.08em' }}>FRICTION INDEX</span>
+                <span style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '0.55rem', color: '#aaa' }}>
+                  <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#00ffc8', animation: 'pulse-dot 1.2s infinite' }} />
+                  LIVE
+                </span>
+              </div>
+              {/* Metric row */}
+              <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                <div style={{ fontSize: '1.4rem', fontWeight: 800, color: '#ff4f6e', fontFamily: 'var(--font-mono)' }}>57%</div>
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontSize: '0.5rem', color: '#aaa', marginBottom: '3px' }}>Avg UX Friction Score</div>
+                  <div style={{ height: '4px', borderRadius: '2px', background: 'rgba(255,255,255,0.06)', overflow: 'hidden' }}>
+                    <div style={{ height: '100%', width: '57%', borderRadius: '2px', background: 'linear-gradient(90deg, #ff4f6e, #ff8c42)' }} />
+                  </div>
+                </div>
+              </div>
+              {/* Stats row */}
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '0.4rem' }}>
+                <div style={{ background: 'rgba(0,255,200,0.06)', borderRadius: '5px', padding: '3px 5px', textAlign: 'center' }}>
+                  <div style={{ fontSize: '0.65rem', fontWeight: 700, color: '#00ffc8' }}>264</div>
+                  <div style={{ fontSize: '0.45rem', color: '#888' }}>Sessions</div>
+                </div>
+                <div style={{ background: 'rgba(139,92,246,0.06)', borderRadius: '5px', padding: '3px 5px', textAlign: 'center' }}>
+                  <div style={{ fontSize: '0.65rem', fontWeight: 700, color: '#a78bfa' }}>1470</div>
+                  <div style={{ fontSize: '0.45rem', color: '#888' }}>Clicks</div>
+                </div>
+                <div style={{ background: 'rgba(249,115,22,0.06)', borderRadius: '5px', padding: '3px 5px', textAlign: 'center' }}>
+                  <div style={{ fontSize: '0.65rem', fontWeight: 700, color: '#fb923c' }}>100%</div>
+                  <div style={{ fontSize: '0.45rem', color: '#888' }}>Engage</div>
+                </div>
+              </div>
+            </div>
+          }
+        />
+      )
+    },
+    {
+      title: "SiteGrab Pro",
+      tag: "Frontend Asset Downloader",
+      desc: "Input any public URL — SiteGrab Pro crawls every page, collects all assets, and packages them into one clean ZIP. No DevTools. No manual work.",
+      tech: ["Next.js", "Node.js", "Puppeteer", "File System API"],
+      github: "https://github.com/krisvasoya/SiteGrab-Pro",
+      demo: "https://sitegrab-tawny.vercel.app/",
+      icon: <Globe size={18} />,
+      preview: (
+        <HoverCompare
+          premiumSrc="/projects/sitegrab-premium.png"
+          altText="SiteGrab Pro"
+          originalPreview={
+            <div style={{
+              height: '140px',
+              background: 'linear-gradient(135deg, #0d1008 0%, #111a0e 100%)',
+              borderRadius: '10px',
+              padding: '0.75rem',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              border: '1px solid rgba(134, 239, 172, 0.1)',
+              overflow: 'hidden',
+              position: 'relative',
+              width: '100%'
+            }}>
+              <style>{`
+                @keyframes crawl-scan { 0%{transform:scaleX(0);transform-origin:left} 60%{transform:scaleX(1);transform-origin:left} 61%{transform:scaleX(1);transform-origin:right} 100%{transform:scaleX(0);transform-origin:right} }
+              `}</style>
+              {/* Header badge */}
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span style={{ fontSize: '0.55rem', color: '#86efac', fontWeight: 700, fontFamily: 'var(--font-mono)', letterSpacing: '0.08em', background: 'rgba(134,239,172,0.1)', padding: '2px 6px', borderRadius: '3px' }}>WEBSITE ASSET DOWNLOADER</span>
+                <Globe size={11} color="#86efac" />
+              </div>
+              {/* URL input mockup */}
+              <div style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(134,239,172,0.15)', borderRadius: '6px', padding: '5px 8px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <Globe size={9} color="#86efac" />
+                <span style={{ fontSize: '0.55rem', color: '#888', fontFamily: 'var(--font-mono)' }}>https://example.com</span>
+              </div>
+              {/* Scanning bar */}
+              <div style={{ height: '3px', borderRadius: '2px', background: 'rgba(255,255,255,0.05)', overflow: 'hidden' }}>
+                <div style={{ height: '100%', background: 'linear-gradient(90deg, #86efac, #4ade80)', animation: 'crawl-scan 2.5s ease-in-out infinite' }} />
+              </div>
+              {/* Stats row */}
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '0.4rem' }}>
+                <div style={{ background: 'rgba(134,239,172,0.05)', borderRadius: '5px', padding: '3px 5px', textAlign: 'center' }}>
+                  <div style={{ fontSize: '0.65rem', fontWeight: 700, color: '#86efac' }}>&lt;2min</div>
+                  <div style={{ fontSize: '0.45rem', color: '#888' }}>Speed</div>
+                </div>
+                <div style={{ background: 'rgba(74,222,128,0.05)', borderRadius: '5px', padding: '3px 5px', textAlign: 'center' }}>
+                  <div style={{ fontSize: '0.65rem', fontWeight: 700, color: '#4ade80' }}>Full ZIP</div>
+                  <div style={{ fontSize: '0.45rem', color: '#888' }}>Output</div>
+                </div>
+                <div style={{ background: 'rgba(134,239,172,0.05)', borderRadius: '5px', padding: '3px 5px', textAlign: 'center' }}>
+                  <div style={{ fontSize: '0.65rem', fontWeight: 700, color: '#86efac' }}>14+</div>
+                  <div style={{ fontSize: '0.45rem', color: '#888' }}>Asset Types</div>
+                </div>
+              </div>
+            </div>
+          }
+        />
+      )
     }
   ];
 
@@ -438,15 +573,17 @@ export const Projects: React.FC = () => {
         <div className="reveal delay-100" style={{ display: 'flex', justifyContent: 'center', width: '100%', marginTop: '1rem' }}>
           <BounceCards 
             projects={projectsList} 
-            containerWidth={980}
+            containerWidth={1080}
             transformStyles={[
-              'rotate(-14deg) translate(-330px)',
-              'rotate(-9deg) translate(-220px)',
-              'rotate(-4deg) translate(-110px)',
-              'rotate(1deg) translate(0px)',
-              'rotate(6deg) translate(110px)',
-              'rotate(11deg) translate(220px)',
-              'rotate(16deg) translate(330px)'
+              'rotate(-16deg) translate(-380px)',
+              'rotate(-12deg) translate(-285px)',
+              'rotate(-8deg) translate(-190px)',
+              'rotate(-4deg) translate(-95px)',
+              'rotate(0deg) translate(0px)',
+              'rotate(4deg) translate(95px)',
+              'rotate(8deg) translate(190px)',
+              'rotate(12deg) translate(285px)',
+              'rotate(16deg) translate(380px)'
             ]}
           />
         </div>

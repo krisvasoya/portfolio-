@@ -72,7 +72,8 @@ export const Navbar: React.FC = () => {
 
           {/* Resume Download CTA */}
           <a 
-            href="https://github.com/krisvasoya" 
+            href="/kris_cv.pdf" 
+            download="kris_cv.pdf"
             target="_blank" 
             rel="noopener noreferrer"
             className="secondary-btn interactive" 

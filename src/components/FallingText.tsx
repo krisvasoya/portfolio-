@@ -41,6 +41,8 @@ const FallingText = ({
   const [effectStarted, setEffectStarted] = useState(false);
   const [isReady, setIsReady] = useState(false);
 
+  const isStarted = trigger === 'auto' ? isReady : effectStarted;
+
   // Build the word spans HTML
   useEffect(() => {
     if (!textRef.current) return;
@@ -60,11 +62,6 @@ const FallingText = ({
   // Trigger logic
   useEffect(() => {
     if (!isReady) return;
-
-    if (trigger === 'auto') {
-      setEffectStarted(true);
-      return;
-    }
 
     if (trigger === 'scroll' && containerRef.current) {
       const observer = new IntersectionObserver(
@@ -104,7 +101,7 @@ const FallingText = ({
 
   // Physics simulation
   useEffect(() => {
-    if (!effectStarted) return;
+    if (!isStarted) return;
     if (!containerRef.current || !textRef.current || !canvasContainerRef.current) return;
 
     cleanup();
@@ -224,10 +221,10 @@ const FallingText = ({
       cancelAnimationFrame(frameId);
       cleanup();
     };
-  }, [effectStarted, gravity, wireframes, backgroundColor, mouseConstraintStiffness, cleanup]);
+  }, [isStarted, gravity, wireframes, backgroundColor, mouseConstraintStiffness, cleanup]);
 
   const handleTrigger = () => {
-    if (!effectStarted && (trigger === 'click' || trigger === 'hover')) {
+    if (!isStarted && (trigger === 'click' || trigger === 'hover')) {
       setEffectStarted(true);
     }
   };
@@ -253,7 +250,7 @@ const FallingText = ({
       <div
         ref={canvasContainerRef}
         className="falling-text-canvas"
-        style={{ pointerEvents: effectStarted ? 'auto' : 'none' }}
+        style={{ pointerEvents: isStarted ? 'auto' : 'none' }}
       />
     </div>
   );
