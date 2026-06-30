@@ -409,7 +409,7 @@ export const Projects: React.FC = () => {
       desc: "Identifies user frustration patterns through click tracking and navigation flow analysis. Features real-time dashboards with live session insights to improve UX and engagement.",
       tech: ["React.js", "Node.js", "MongoDB", "Real-time Analytics"],
       github: "https://github.com/krisvasoya",
-      demo: "https://friction-analyzer.onrender.com/",
+      demo: "https://friction-sigma.vercel.app/",
       icon: (
         <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="18" width="18" xmlns="http://www.w3.org/2000/svg">
           <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
@@ -481,7 +481,7 @@ export const Projects: React.FC = () => {
       desc: "Input any public URL — SiteGrab Pro crawls every page, collects all assets, and packages them into one clean ZIP. No DevTools. No manual work.",
       tech: ["Next.js", "Node.js", "Puppeteer", "File System API"],
       github: "https://github.com/krisvasoya/SiteGrab-Pro",
-      demo: "https://sitegrab-tawny.vercel.app/",
+      demo: "https://sitegrab-orpin.vercel.app/",
       icon: <Globe size={18} />,
       preview: (
         <HoverCompare
